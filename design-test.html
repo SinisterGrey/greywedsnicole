@@ -6,29 +6,44 @@
   <title>greywedsnicole — design proof</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Pinyon+Script&display=swap" rel="stylesheet" />
   <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --ivory:    #F5F0E8;
-      --paper:    #EDE7D9;
-      --paper-2:  #FDFBF6;
-      --dust:     #D4CFC4;
-      --ash:      #8A8680;
-      --charcoal: #1C1A18;
-      --soot:     #2D2B28;
-      --gold:     #C9A84C;
-      --gold-dim: #8A6A2A;
-      --gold-soft: rgba(201,168,76,0.15);
-      --gold-halo: rgba(201,168,76,0.25);
+      /* emerald — primary dark */
+      --emerald-deep:    #14352A;
+      --emerald:         #1F3D2E;
+      --emerald-mid:     #2D553F;
+      --emerald-light:   #4F7960;
 
-      /* color-of-time ivories */
-      --ivory-2009: #EFE9DC;
-      --ivory-2017: #F2ECDE;
-      --ivory-2018: #F4EEE0;
-      --ivory-2021: #F7F1E2;
-      --ivory-2022: #F5EFDE;
-      --ivory-2024: #EBE7D9;
+      /* sage — secondary lighter green */
+      --sage:            #A8C0B0;
+      --sage-pale:       #D8E0D6;
+
+      /* cream — surfaces */
+      --cream:           #F5EFE0;
+      --cream-deep:      #EDE5D0;
+      --cream-bright:    #FBF6E8;
+      --paper-shadow:    #C7BFA8;
+
+      /* champagne — accent */
+      --champagne:       #C9A876;
+      --champagne-bright:#E0C088;
+      --champagne-dim:   #8A7044;
+      --champagne-soft:  rgba(201, 168, 118, 0.18);
+      --champagne-halo:  rgba(201, 168, 118, 0.30);
+
+      /* text */
+      --ink:             #1C1A18;
+      --ash:             #6B7A6F;
+
+      /* color-of-time creams (warmer toward 2021, cooler at the edges) */
+      --cream-2009: #F0E9D5;
+      --cream-2017: #F2EDD8;
+      --cream-2018: #F4EFDB;
+      --cream-2021: #F8F2DE;
+      --cream-2022: #F4EEDA;
+      --cream-2024: #EDE7D4;
 
       --ease: cubic-bezier(0.16, 1, 0.3, 1);
     }
@@ -37,62 +52,83 @@
     html { scroll-behavior: smooth; }
     body {
       font-family: 'Satoshi', system-ui, -apple-system, sans-serif;
-      background: var(--ivory);
-      color: var(--charcoal);
+      background: var(--cream);
+      color: var(--ink);
       line-height: 1.7;
       font-size: 16px;
       -webkit-font-smoothing: antialiased;
-      padding-right: 24px; /* room for the gold ribbon */
+      padding-right: 24px;
     }
 
-    /* ─────────────────────────────────── film grain (decorative, hero/seal only) */
-    .grain {
+    /* ─────────────────────────────────── paper texture (subtle parchment) */
+    .paper-grain {
       position: absolute; inset: 0; pointer-events: none;
-      opacity: 0.04; mix-blend-mode: overlay;
-      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+      opacity: 0.18; mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='400'><filter id='p'><feTurbulence type='fractalNoise' baseFrequency='0.04' numOctaves='5'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.55 0'/></filter><rect width='100%' height='100%' filter='url(%23p)'/></svg>");
+    }
+    .sparkle {
+      position: absolute; pointer-events: none;
+      color: var(--champagne-bright); opacity: 0.7;
     }
 
-    /* ─────────────────────────────────── layout primitives */
+    /* ─────────────────────────────────── layout */
     .page-section {
       max-width: 1180px;
       margin: 0 auto;
       padding: 96px 48px;
     }
-    .page-section + .page-section { border-top: 1px solid var(--dust); }
+    .page-section + .page-section { border-top: 1px solid var(--paper-shadow); }
 
     .eyebrow {
       font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
       color: var(--ash); font-weight: 500;
     }
+    .scripture {
+      font-family: 'Cormorant Garamond', serif; font-style: italic;
+      font-size: 13px; color: var(--champagne-dim); letter-spacing: 0.04em;
+    }
     .section-title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 40px; font-weight: 400; letter-spacing: 0.01em;
-      color: var(--charcoal); margin-top: 8px;
+      font-size: 42px; font-weight: 400; letter-spacing: 0.005em;
+      color: var(--emerald-deep); margin-top: 8px;
     }
     .section-note {
-      max-width: 620px; color: var(--soot); margin-top: 16px; font-size: 14.5px;
+      max-width: 640px; color: var(--ink); opacity: 0.78; margin-top: 16px; font-size: 14.5px;
     }
     .gold-rule {
-      display: block; width: 60px; height: 1px; background: var(--gold);
+      display: block; width: 80px; height: 1px; background: var(--champagne);
       margin: 32px 0 24px;
     }
+    .gold-rule::before, .gold-rule::after { content: ""; }
 
-    /* ─────────────────────────────────── hero strip */
+    /* gold filigree divider */
+    .filigree {
+      display: flex; align-items: center; justify-content: center; gap: 12px;
+      margin: 32px 0;
+    }
+    .filigree-line { height: 1px; background: var(--champagne); flex: 1; max-width: 120px; }
+    .filigree-glyph { color: var(--champagne); font-size: 14px; }
+
+    /* ─────────────────────────────────── hero */
     .hero {
       position: relative; overflow: hidden;
-      background: linear-gradient(180deg, var(--charcoal) 0%, var(--soot) 100%);
-      color: var(--ivory);
-      padding: 160px 48px 120px;
+      background: linear-gradient(180deg, var(--emerald-deep) 0%, var(--emerald) 60%, var(--emerald-mid) 100%);
+      color: var(--cream);
+      padding: 140px 48px 120px;
     }
     .hero-inner {
       max-width: 1180px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr; gap: 48px;
+      display: grid; grid-template-columns: 1fr; gap: 40px;
       position: relative; z-index: 2;
     }
-    .hero-rule { width: 60px; height: 1px; background: var(--gold); }
+    .hero-scripture {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 16px; color: var(--cream); opacity: 0.85; font-style: italic;
+      letter-spacing: 0.04em;
+    }
     .hero-photo {
       width: 100%; max-width: 1100px; aspect-ratio: 16 / 9;
-      filter: saturate(0.85);
+      filter: saturate(0.9);
       mask-image: radial-gradient(ellipse 75% 75% at center, #000 60%, transparent 100%);
       animation: photoEnter 1800ms var(--ease) both;
     }
@@ -102,23 +138,39 @@
     }
     .hero-headline {
       font-family: 'Cormorant Garamond', serif;
-      font-weight: 400; letter-spacing: 0.04em;
-      font-size: clamp(56px, 9vw, 96px);
-      color: var(--ivory); line-height: 1;
+      font-weight: 500; letter-spacing: 0.02em;
+      font-size: clamp(64px, 10vw, 120px);
+      color: var(--cream); line-height: 1;
     }
+    .hero-headline .amp {
+      color: var(--champagne-bright);
+      font-style: italic; font-weight: 400;
+      padding: 0 12px;
+    }
+    .hero-script {
+      font-family: 'Pinyon Script', cursive;
+      font-size: clamp(40px, 6vw, 72px);
+      color: var(--cream); margin-top: -8px;
+    }
+    .hero-script .amp { color: var(--champagne-bright); padding: 0 8px; }
     .hero-subline {
-      font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
-      color: var(--gold); font-weight: 500; margin-top: 24px;
+      font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--champagne); font-weight: 500; margin-top: 24px;
     }
-    .hero-motif {
-      position: absolute; top: 64px; right: 64px; z-index: 1;
-      width: 240px; height: 240px; opacity: 0.35;
-      animation: motifSpin 240s linear infinite;
+
+    /* corner floral ornaments */
+    .corner-floral {
+      position: absolute; width: 280px; height: 280px; z-index: 1;
+      pointer-events: none; opacity: 0.95;
     }
-    @keyframes motifSpin { to { transform: rotate(360deg); } }
+    .corner-floral.tl { top: 0; left: 0; }
+    .corner-floral.tr { top: 0; right: 0; transform: scaleX(-1); }
+    .corner-floral.bl { bottom: 0; left: 0; transform: scaleY(-1); }
+    .corner-floral.br { bottom: 0; right: 0; transform: scale(-1, -1); }
+
     .hero-scroll {
       position: absolute; bottom: 48px; left: 50%; transform: translateX(-50%);
-      width: 1px; height: 48px; background: var(--gold);
+      width: 1px; height: 48px; background: var(--champagne);
       animation: scrollPulse 2400ms ease-in-out infinite;
     }
     @keyframes scrollPulse {
@@ -126,11 +178,10 @@
       50%      { opacity: 1; }
     }
 
-    /* design-test marker */
     .proof-tag {
       position: absolute; top: 24px; left: 48px; z-index: 3;
       font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
-      color: var(--gold); font-weight: 500;
+      color: var(--champagne); font-weight: 500;
     }
     .proof-tag::before { content: "·  "; color: var(--ash); }
 
@@ -140,29 +191,35 @@
       gap: 12px; margin-top: 24px;
     }
     .swatch {
-      border: 1px solid var(--dust); border-radius: 4px; overflow: hidden;
-      background: var(--paper-2);
+      border: 1px solid var(--paper-shadow); border-radius: 4px; overflow: hidden;
+      background: var(--cream-bright);
     }
     .swatch-color { height: 80px; }
     .swatch-meta { padding: 12px 14px; font-size: 12px; }
-    .swatch-meta .name { font-weight: 500; color: var(--charcoal); }
+    .swatch-meta .name { font-weight: 500; color: var(--ink); }
     .swatch-meta .hex { color: var(--ash); margin-top: 2px; font-variant-numeric: tabular-nums; }
 
-    /* ─────────────────────────────────── typography demo */
+    /* ─────────────────────────────────── typography */
     .type-row {
       display: grid; grid-template-columns: 140px 1fr; gap: 32px;
-      padding: 24px 0; border-bottom: 1px solid var(--dust);
+      padding: 24px 0; border-bottom: 1px solid var(--paper-shadow);
     }
     .type-row:last-child { border-bottom: 0; }
     .type-label { color: var(--ash); font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; }
     .type-sample-hero {
-      font-family: 'Cormorant Garamond', serif; font-size: 88px; line-height: 1; letter-spacing: 0.04em;
+      font-family: 'Cormorant Garamond', serif; font-size: 88px; line-height: 1; letter-spacing: 0.02em;
+      color: var(--emerald-deep);
     }
-    .type-sample-h1 { font-family: 'Cormorant Garamond', serif; font-size: 48px; line-height: 1.15; }
-    .type-sample-h2 { font-family: 'Cormorant Garamond', serif; font-size: 32px; line-height: 1.2; }
+    .type-sample-hero .amp { color: var(--champagne); font-style: italic; padding: 0 8px; }
+    .type-sample-script {
+      font-family: 'Pinyon Script', cursive; font-size: 64px; line-height: 1; color: var(--emerald-deep);
+    }
+    .type-sample-script .amp { color: var(--champagne); }
+    .type-sample-h1 { font-family: 'Cormorant Garamond', serif; font-size: 48px; line-height: 1.15; color: var(--emerald-deep); }
+    .type-sample-h2 { font-family: 'Cormorant Garamond', serif; font-size: 32px; line-height: 1.2; color: var(--emerald-deep); }
     .type-sample-pull {
       font-family: 'Cormorant Garamond', serif; font-style: italic;
-      font-size: 28px; color: var(--gold-dim); line-height: 1.4;
+      font-size: 28px; color: var(--champagne-dim); line-height: 1.4;
     }
     .type-sample-body { font-size: 16px; line-height: 1.7; max-width: 640px; }
     .type-sample-caption {
@@ -170,48 +227,50 @@
       color: var(--ash); font-weight: 500;
     }
 
-    /* ─────────────────────────────────── kintsugi motif */
+    /* ─────────────────────────────────── floral motif gallery */
     .motif-grid {
-      display: grid; grid-template-columns: 240px 120px 24px; gap: 56px;
+      display: grid; grid-template-columns: 280px 160px 56px; gap: 56px;
       align-items: center; margin-top: 24px;
     }
     .motif-cell { display: flex; flex-direction: column; align-items: center; gap: 12px; }
-    .motif-cell svg { color: var(--charcoal); }
     .motif-cell .swatch-meta { padding: 0; text-align: center; }
 
-    /* ─────────────────────────────────── color of time */
+    /* ─────────────────────────────────── color-of-time */
     .time-strip {
       display: grid; grid-template-columns: repeat(6, 1fr); gap: 1px;
-      border: 1px solid var(--dust); border-radius: 4px; overflow: hidden;
-      margin-top: 24px; background: var(--dust);
+      border: 1px solid var(--paper-shadow); border-radius: 4px; overflow: hidden;
+      margin-top: 24px; background: var(--paper-shadow);
     }
     .time-band {
       padding: 48px 16px 16px;
       font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
-      color: var(--ash);
+      color: var(--emerald);
     }
 
     /* ─────────────────────────────────── wax seal */
     .seal-stage {
       position: relative; overflow: hidden; border-radius: 6px;
-      background: linear-gradient(180deg, var(--charcoal), var(--soot));
-      padding: 96px 48px; margin-top: 24px; min-height: 540px;
+      background: linear-gradient(180deg, var(--emerald-deep), var(--emerald));
+      padding: 96px 48px; margin-top: 24px; min-height: 560px;
       display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 32px;
     }
+    .seal-stage .corner-floral { opacity: 0.55; width: 220px; height: 220px; }
     .seal-instruction {
-      color: var(--ash); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--sage); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+      position: relative; z-index: 2;
     }
     .wax-seal {
-      width: 240px; height: 240px; cursor: pointer;
+      width: 240px; height: 240px; cursor: pointer; position: relative; z-index: 2;
       animation: sealBreath 4s ease-in-out infinite;
       transition: transform 600ms var(--ease);
+      filter: drop-shadow(0 8px 24px rgba(20, 53, 42, 0.5));
     }
     @keyframes sealBreath {
       0%, 100% { transform: scale(1); }
       50%      { transform: scale(1.01); }
     }
     .wax-seal .crack {
-      stroke: #5C3F12; stroke-width: 3; fill: none;
+      stroke: #0E2A1F; stroke-width: 3; fill: none;
       stroke-dasharray: 500; stroke-dashoffset: 500;
       transition: stroke-dashoffset 600ms var(--ease);
     }
@@ -219,17 +278,14 @@
     .seal-stage.cracking .wax-seal { animation: none; }
     .seal-stage.cracking .wax-half-left  { transform: translate(-6px, 12px) rotate(-4deg); }
     .seal-stage.cracking .wax-half-right { transform: translate( 6px,  8px) rotate( 4deg); }
-    .wax-half-left, .wax-half-right {
-      transition: transform 600ms var(--ease);
-      transform-origin: center;
-    }
+    .wax-half-left, .wax-half-right { transition: transform 600ms var(--ease); transform-origin: center; }
     .seal-stage.unlocking .wax-seal {
       transform: scale(1.4); opacity: 0;
       transition: transform 1200ms var(--ease), opacity 1200ms ease;
     }
 
     .seal-input-wrap {
-      opacity: 0; pointer-events: none;
+      opacity: 0; pointer-events: none; position: relative; z-index: 2;
       transition: opacity 400ms ease 200ms;
       display: flex; flex-direction: column; align-items: center; gap: 16px;
     }
@@ -238,46 +294,50 @@
 
     .seal-input {
       width: 360px; max-width: 80vw; background: transparent;
-      border: none; border-bottom: 1px solid var(--gold);
+      border: none; border-bottom: 1px solid var(--champagne);
       font-family: 'Cormorant Garamond', serif; font-size: 32px; letter-spacing: 0.08em;
-      color: var(--gold); text-align: center; padding: 8px 0;
-      outline: none; caret-color: var(--gold);
+      color: var(--champagne-bright); text-align: center; padding: 8px 0;
+      outline: none; caret-color: var(--champagne-bright);
     }
-    .seal-input::placeholder { color: rgba(201,168,76,0.25); font-style: italic; }
-    .seal-input.shake { animation: shake 420ms ease; }
+    .seal-input::placeholder { color: rgba(224, 192, 136, 0.25); font-style: italic; }
+    .seal-input.shake { animation: shake 420ms ease; color: var(--champagne-dim); }
     @keyframes shake {
       0%, 100% { transform: translateX(0); }
       20%, 60% { transform: translateX(-8px); }
       40%, 80% { transform: translateX(8px); }
     }
-    .seal-input.shake { color: var(--gold-dim); }
 
     .unlocked-panel {
-      opacity: 0; transform: translateY(12px); pointer-events: none;
+      opacity: 0; transform: translateY(12px); pointer-events: none; position: relative; z-index: 2;
       transition: opacity 1200ms ease 600ms, transform 1200ms var(--ease) 600ms;
-      color: var(--ivory); text-align: center;
+      color: var(--cream); text-align: center;
     }
     .seal-stage.unlocked .unlocked-panel { opacity: 1; transform: translateY(0); pointer-events: auto; }
     .unlocked-panel h3 {
-      font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 400; line-height: 1.2;
+      font-family: 'Cormorant Garamond', serif; font-size: 40px; font-weight: 400; line-height: 1.2;
     }
-    .unlocked-panel p { color: var(--dust); margin-top: 12px; font-size: 14px; }
+    .unlocked-panel .script-accent {
+      font-family: 'Pinyon Script', cursive; font-size: 32px;
+      color: var(--champagne-bright); display: block; margin-top: 4px;
+    }
+    .unlocked-panel p { color: var(--sage); margin-top: 16px; font-size: 14px; }
 
     .seal-reset {
-      position: absolute; bottom: 16px; right: 16px;
-      background: transparent; border: 1px solid var(--ash); color: var(--ash);
+      position: absolute; bottom: 16px; right: 16px; z-index: 3;
+      background: transparent; border: 1px solid var(--ash); color: var(--sage);
       font-family: inherit; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
       padding: 6px 12px; border-radius: 2px; cursor: pointer;
     }
-    .seal-reset:hover { color: var(--gold); border-color: var(--gold); }
+    .seal-reset:hover { color: var(--champagne); border-color: var(--champagne); }
 
     /* ─────────────────────────────────── photo placeholder */
     .ph-photo {
       display: block; width: 100%; height: 100%;
       background:
-        radial-gradient(ellipse 60% 50% at center, var(--paper) 0%, var(--paper-2) 60%, var(--paper) 100%);
+        radial-gradient(ellipse 60% 50% at center, var(--cream-deep) 0%, var(--cream-bright) 60%, var(--cream-deep) 100%);
       position: relative; overflow: hidden;
-      border: 6px solid var(--paper-2); box-shadow: 0 6px 24px rgba(28,26,24,0.12);
+      border: 6px solid var(--cream-bright);
+      box-shadow: 0 6px 24px rgba(20, 53, 42, 0.18);
     }
     .ph-photo::before {
       content: ""; position: absolute; inset: 0;
@@ -298,97 +358,99 @@
     }
     .ledger-spread {
       display: grid; grid-template-columns: 1fr 1fr;
-      background: var(--paper);
-      border: 1px solid var(--dust); border-radius: 4px;
-      box-shadow: 0 24px 48px rgba(28,26,24,0.12), 0 4px 12px rgba(28,26,24,0.06);
+      background: var(--cream-deep);
+      border: 1px solid var(--paper-shadow); border-radius: 4px;
+      box-shadow: 0 24px 48px rgba(20, 53, 42, 0.18), 0 4px 12px rgba(20, 53, 42, 0.08);
       transform: rotateX(2deg); transform-origin: center bottom;
       position: relative; overflow: hidden;
     }
     .ledger-spread::before {
       content: ""; position: absolute; left: 50%; top: 0; bottom: 0; width: 3px;
       transform: translateX(-50%);
-      background: linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.08) 30%, rgba(0,0,0,0.16) 50%, rgba(0,0,0,0.08) 70%, transparent 100%);
+      background: linear-gradient(90deg, transparent 0%, rgba(20,53,42,0.10) 30%, rgba(20,53,42,0.22) 50%, rgba(20,53,42,0.10) 70%, transparent 100%);
       pointer-events: none; z-index: 5;
     }
-    .ledger-page { padding: 56px 48px; min-height: 600px; }
-    .ledger-page.left  { background: var(--ivory-2018); }
-    .ledger-page.right { background: var(--paper-2); border-left: 1px solid transparent; }
+    .ledger-page { padding: 56px 48px; min-height: 600px; position: relative; }
+    .ledger-page.left  { background: var(--cream-2018); }
+    .ledger-page.right { background: var(--cream-bright); }
+
+    .ledger-corner {
+      position: absolute; width: 120px; height: 120px;
+      top: 12px; opacity: 0.55; pointer-events: none;
+    }
+    .ledger-page.left .ledger-corner  { left: 12px; }
+    .ledger-page.right .ledger-corner { right: 12px; transform: scaleX(-1); }
 
     .ledger-phase {
       display: inline-flex; align-items: center; gap: 8px;
       font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
-      color: var(--ash);
+      color: var(--ash); position: relative; z-index: 2;
     }
     .ledger-phase .pill {
-      display: inline-block; width: 22px; height: 3px; background: var(--gold);
+      display: inline-block; width: 22px; height: 3px; background: var(--champagne);
     }
     .ledger-date {
       font-family: 'Cormorant Garamond', serif; font-style: italic;
-      font-size: 44px; color: var(--charcoal); margin: 16px 0 8px;
+      font-size: 44px; color: var(--emerald-deep); margin: 16px 0 8px;
+      position: relative; z-index: 2;
     }
-    .ledger-divider { width: 32px; height: 1px; background: var(--gold-dim); margin: 16px 0 24px; }
-    .ledger-photo {
-      width: 100%; aspect-ratio: 16 / 11; margin-bottom: 28px;
-    }
-    .ledger-narrative p { font-size: 15.5px; line-height: 1.75; color: var(--soot); }
+    .ledger-divider { width: 40px; height: 1px; background: var(--champagne); margin: 16px 0 24px; }
+    .ledger-photo { width: 100%; aspect-ratio: 16 / 11; margin-bottom: 28px; position: relative; z-index: 2; }
+    .ledger-narrative p { font-size: 15.5px; line-height: 1.75; color: var(--ink); position: relative; z-index: 2; }
     .ledger-narrative p + p { margin-top: 14px; }
     .ledger-quote {
       font-family: 'Cormorant Garamond', serif; font-style: italic;
-      font-size: 22px; color: var(--gold-dim); margin-top: 28px;
-      padding-left: 16px; border-left: 1px solid var(--gold);
+      font-size: 22px; color: var(--champagne-dim); margin-top: 28px;
+      padding-left: 16px; border-left: 1px solid var(--champagne);
+      position: relative; z-index: 2;
     }
 
     .ledger-evidence-title {
       font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
-      color: var(--ash); margin-bottom: 20px;
+      color: var(--ash); margin-bottom: 20px; position: relative; z-index: 2;
     }
     .ev-card {
-      background: var(--ivory); border: 1px solid var(--dust); border-left-width: 3px;
+      background: var(--cream); border: 1px solid var(--paper-shadow); border-left-width: 3px;
       border-radius: 3px; padding: 14px 16px; display: grid;
       grid-template-columns: 24px 1fr auto; gap: 14px; align-items: center;
       margin-bottom: 12px; position: relative;
     }
-    .ev-card.phase-origins      { border-left-color: var(--gold-dim); }
+    .ev-card.phase-origins      { border-left-color: var(--champagne-dim); }
     .ev-card.phase-reconnection { border-left-color: #B98A3E; }
-    .ev-card.phase-courtship    { border-left-color: var(--gold); }
-    .ev-card.phase-engagement   { border-left-color: var(--gold); }
-    .ev-card.phase-marriage     { border-left-color: var(--gold); }
-    .ev-card.phase-tribunal     { border-left-color: var(--charcoal); }
+    .ev-card.phase-courtship    { border-left-color: var(--champagne); }
+    .ev-card.phase-engagement   { border-left-color: var(--champagne-bright); }
+    .ev-card.phase-marriage     { border-left-color: var(--emerald-light); }
+    .ev-card.phase-tribunal     { border-left-color: var(--emerald-deep); }
 
     .ev-icon { color: var(--ash); }
-    .ev-body .ev-title { font-size: 13.5px; font-weight: 500; color: var(--charcoal); }
+    .ev-body .ev-title { font-size: 13.5px; font-weight: 500; color: var(--emerald-deep); }
     .ev-body .ev-meta  { font-size: 11px; color: var(--ash); margin-top: 2px; }
     .ev-meter { display: flex; gap: 3px; align-items: flex-end; }
-    .ev-meter span {
-      display: block; width: 4px; background: var(--dust); border-radius: 1px;
-    }
+    .ev-meter span { display: block; width: 4px; background: var(--paper-shadow); border-radius: 1px; }
     .ev-meter span:nth-child(1) { height: 6px; }
     .ev-meter span:nth-child(2) { height: 9px; }
     .ev-meter span:nth-child(3) { height: 12px; }
-    .ev-meter.bars-3 span { background: var(--gold); }
+    .ev-meter.bars-3 span { background: var(--champagne); }
     .ev-meter.bars-2 span:nth-child(1),
-    .ev-meter.bars-2 span:nth-child(2) { background: var(--gold); }
-    .ev-meter.bars-1 span:nth-child(1) { background: var(--gold-dim); }
+    .ev-meter.bars-2 span:nth-child(2) { background: var(--champagne); }
+    .ev-meter.bars-1 span:nth-child(1) { background: var(--champagne-dim); }
 
-    .ev-link {
-      position: absolute; top: 8px; right: 8px;
-      color: var(--gold); opacity: 0.85;
-    }
+    .ev-link { position: absolute; top: 8px; right: 8px; color: var(--champagne); opacity: 0.9; }
     .ev-link svg { display: block; }
 
-    .ledger-canon { margin-top: 28px; font-size: 13px; color: var(--soot); }
+    .ledger-canon { margin-top: 28px; font-size: 13px; color: var(--ink); position: relative; z-index: 2; }
     .ledger-canon .label { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ash); display: block; margin-bottom: 8px; }
     .canon-chip {
       display: inline-block; margin-right: 12px; padding: 2px 0;
-      border-bottom: 1px solid var(--gold); color: var(--charcoal); cursor: help;
+      border-bottom: 1px solid var(--champagne); color: var(--emerald-deep); cursor: help;
     }
     .ledger-footer {
       display: flex; justify-content: space-between; align-items: center;
-      padding: 12px 48px; background: var(--paper);
-      border-top: 1px solid var(--dust); font-size: 11px; color: var(--ash);
+      padding: 12px 48px; background: var(--cream-deep);
+      border-top: 1px solid var(--paper-shadow); font-size: 11px; color: var(--ash);
       letter-spacing: 0.12em; text-transform: uppercase;
     }
-    .ledger-footer .nav { color: var(--gold-dim); }
+    .ledger-footer .nav { color: var(--champagne-dim); }
 
     /* ─────────────────────────────────── verso card */
     .verso-card {
@@ -402,96 +464,106 @@
     .verso-card.flipped .verso-inner { transform: rotateY(180deg); }
     .verso-face {
       position: absolute; inset: 0; backface-visibility: hidden;
-      background: var(--paper-2); border: 1px solid var(--dust);
+      background: var(--cream-bright); border: 1px solid var(--paper-shadow);
       border-radius: 4px; padding: 56px 64px;
-      box-shadow: 0 4px 24px rgba(28,26,24,0.08);
+      box-shadow: 0 4px 24px rgba(20, 53, 42, 0.10);
       display: flex; flex-direction: column;
+      overflow: hidden;
     }
+    .verso-face .corner-floral { width: 140px; height: 140px; top: 0; left: 0; opacity: 0.5; }
+    .verso-face .corner-floral.br { left: auto; right: 0; top: auto; bottom: 0; transform: scale(-1, -1); }
     .verso-back { transform: rotateY(180deg); }
+
     .verso-ground {
       font-family: 'Cormorant Garamond', serif; font-style: italic;
-      font-size: 13px; color: var(--gold-dim); letter-spacing: 0.04em;
+      font-size: 13px; color: var(--champagne-dim); letter-spacing: 0.04em; position: relative; z-index: 2;
     }
     .verso-heading {
       font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 400;
-      color: var(--charcoal); line-height: 1.2; margin-top: 6px;
+      color: var(--emerald-deep); line-height: 1.2; margin-top: 6px; position: relative; z-index: 2;
     }
-    .verso-body { font-size: 15.5px; line-height: 1.75; color: var(--soot); margin-top: 18px; }
+    .verso-body { font-size: 15.5px; line-height: 1.75; color: var(--ink); margin-top: 18px; position: relative; z-index: 2; }
     .verso-body p + p { margin-top: 12px; }
     .tag {
       display: inline-block; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
       padding: 1px 6px; margin: 0 2px; vertical-align: middle; font-weight: 500; border-radius: 2px;
     }
-    .tag-fact      { color: var(--gold);    background: var(--gold-soft); }
-    .tag-arg       { color: var(--charcoal); background: rgba(28,26,24,0.06); }
-    .tag-infer     { color: #B07A2A; background: rgba(176,122,42,0.10); }
-    .tag-new       { color: #3F7A6B; background: rgba(63,122,107,0.10); }
-    .tag-admission { color: var(--gold);    background: var(--gold-soft); border: 1px solid var(--gold); }
+    .tag-fact      { color: var(--champagne-dim); background: var(--champagne-soft); }
+    .tag-arg       { color: var(--emerald-deep); background: rgba(31, 61, 46, 0.10); }
+    .tag-infer     { color: #B07A2A; background: rgba(176, 122, 42, 0.10); }
+    .tag-new       { color: var(--emerald-mid); background: rgba(45, 85, 63, 0.12); }
+    .tag-admission { color: var(--champagne-dim); background: var(--champagne-soft); border: 1px solid var(--champagne); }
 
     .verso-tab {
-      position: absolute; bottom: 28px; right: -8px;
-      background: var(--gold); color: var(--ivory);
+      position: absolute; bottom: 28px; right: -8px; z-index: 3;
+      background: var(--emerald); color: var(--cream-bright);
       font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 500;
-      padding: 8px 18px; border: none; cursor: pointer;
+      padding: 9px 20px; border: none; cursor: pointer;
       transform: rotate(-2deg); border-radius: 2px;
       transition: transform 240ms var(--ease), background 240ms ease;
     }
-    .verso-tab:hover { transform: translateX(12px) rotate(-2deg); background: var(--gold-dim); }
+    .verso-tab:hover { transform: translateX(12px) rotate(-2deg); background: var(--emerald-deep); }
     .verso-tab.left { right: auto; left: -8px; transform: rotate(2deg); }
     .verso-tab.left:hover { transform: translateX(-12px) rotate(2deg); }
 
-    .verso-evidence { display: flex; flex-direction: column; gap: 12px; margin-top: 18px; }
+    .verso-evidence { display: flex; flex-direction: column; gap: 12px; margin-top: 18px; position: relative; z-index: 2; }
 
-    /* ─────────────────────────────────── two truths diptych */
+    /* ─────────────────────────────────── folded letter (two-pages diptych) */
     .diptych {
-      position: relative; max-width: 900px; margin: 32px auto 0;
+      position: relative; max-width: 940px; margin: 32px auto 0;
       aspect-ratio: 16 / 9; cursor: pointer;
     }
-    .diptych-half {
-      position: absolute; top: 0; bottom: 0; width: 50%; overflow: hidden;
+    .diptych-page {
+      position: absolute; top: 0; bottom: 0; width: calc(50% - 24px); overflow: hidden;
+      background: var(--cream-bright);
+      border: 1px solid var(--paper-shadow);
+      box-shadow: 0 8px 32px rgba(20, 53, 42, 0.18);
       transition: transform 320ms var(--ease);
-      background: linear-gradient(135deg, var(--paper) 0%, var(--ivory-2021) 60%, var(--paper) 100%);
     }
-    .diptych-half.left  { left: 0; clip-path: polygon(0 0, 98% 0, 92% 14%, 100% 28%, 88% 44%, 96% 60%, 86% 78%, 94% 92%, 84% 100%, 0 100%); }
-    .diptych-half.right { right: 0; clip-path: polygon(2% 0, 100% 0, 100% 100%, 16% 100%, 6% 92%, 14% 78%, 4% 60%, 12% 44%, 0 28%, 8% 14%); }
-    .diptych:hover .diptych-half.left  { transform: translateX(-8px); }
-    .diptych:hover .diptych-half.right { transform: translateX( 8px); }
-    .diptych-tear {
-      position: absolute; top: 0; left: 50%; transform: translateX(-50%);
-      width: 30px; height: 100%; pointer-events: none; z-index: 2;
-      color: var(--gold);
-    }
-    .diptych-label {
-      position: absolute; top: 50%; transform: translateY(-50%);
-      width: 38%; padding: 24px;
-      font-family: 'Cormorant Garamond', serif; color: var(--charcoal);
-      background: rgba(245,240,232,0.86); backdrop-filter: blur(2px);
-      border: 1px solid var(--dust);
-    }
-    .diptych-label.left  { left: 4%; }
-    .diptych-label.right { right: 4%; }
-    .diptych-label .eyebrow { display: block; margin-bottom: 6px; }
-    .diptych-label .quote { font-style: italic; font-size: 22px; line-height: 1.3; }
-    .diptych-bolt {
-      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-      width: 36px; height: 36px; color: var(--gold); z-index: 3;
-      filter: drop-shadow(0 0 12px rgba(201,168,76,0.6));
-    }
+    .diptych-page.left  { left: 0; }
+    .diptych-page.right { right: 0; }
+    .diptych:hover .diptych-page.left  { transform: translateX(-6px); }
+    .diptych:hover .diptych-page.right { transform: translateX( 6px); }
 
-    /* ─────────────────────────────────── gold ribbon (persistent) */
+    /* emerald silk ribbon binding */
+    .diptych-ribbon {
+      position: absolute; top: -12px; bottom: -12px; left: 50%; transform: translateX(-50%);
+      width: 56px; z-index: 2; pointer-events: none;
+    }
+    .diptych-seal {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      z-index: 3; width: 88px; height: 88px;
+      filter: drop-shadow(0 4px 12px rgba(20, 53, 42, 0.4));
+      cursor: pointer; pointer-events: auto;
+      transition: transform 240ms var(--ease);
+    }
+    .diptych-seal:hover { transform: translate(-50%, -50%) scale(1.06); }
+
+    .diptych-label {
+      padding: 40px 32px 28px;
+      font-family: 'Cormorant Garamond', serif; color: var(--emerald-deep);
+      height: 100%; display: flex; flex-direction: column; justify-content: center;
+    }
+    .diptych-label .eyebrow { display: block; margin-bottom: 12px; color: var(--ash); }
+    .diptych-label .quote { font-style: italic; font-size: 22px; line-height: 1.35; color: var(--ink); }
+    .diptych-page.right .diptych-label { padding-left: 44px; }
+    .diptych-page.left  .diptych-label { padding-right: 44px; text-align: right; }
+    .diptych-page.left  .diptych-label .eyebrow { text-align: right; }
+
+    /* ─────────────────────────────────── gold ribbon nav */
     .gold-ribbon {
       position: fixed; top: 0; right: 0; bottom: 0; width: 24px; z-index: 50;
       display: flex; align-items: center; justify-content: flex-end;
       pointer-events: none;
     }
     .ribbon-line {
-      position: absolute; right: 11px; top: 0; bottom: 0; width: 2px; background: var(--gold);
-      opacity: 0.6; transition: opacity 240ms ease;
+      position: absolute; right: 11px; top: 0; bottom: 0; width: 2px; background: var(--champagne);
+      opacity: 0.65; transition: opacity 240ms ease;
     }
     .ribbon-panel {
       position: absolute; right: 0; top: 0; bottom: 0; width: 64px;
-      background: rgba(245,240,232,0.96); backdrop-filter: blur(8px);
-      border-left: 1px solid var(--dust);
+      background: rgba(245, 239, 224, 0.96); backdrop-filter: blur(8px);
+      border-left: 1px solid var(--paper-shadow);
       transform: translateX(64px); transition: transform 300ms var(--ease);
       display: flex; flex-direction: column; align-items: center; justify-content: center;
       gap: 10px; pointer-events: auto;
@@ -499,22 +571,20 @@
     .gold-ribbon:hover { width: 64px; }
     .gold-ribbon:hover .ribbon-panel { transform: translateX(0); }
     .gold-ribbon:hover .ribbon-line { opacity: 0; }
-    .ribbon-trigger {
-      position: absolute; top: 0; right: 0; bottom: 0; width: 40px; pointer-events: auto;
-    }
+    .ribbon-trigger { position: absolute; top: 0; right: 0; bottom: 0; width: 40px; pointer-events: auto; }
     .ribbon-dot {
-      width: 8px; height: 8px; border-radius: 50%; background: var(--gold-dim);
+      width: 8px; height: 8px; border-radius: 50%; background: var(--champagne-dim);
       cursor: pointer; transition: transform 200ms ease, box-shadow 200ms ease;
       position: relative;
     }
-    .ribbon-dot:hover { transform: scale(1.4); background: var(--gold); }
+    .ribbon-dot:hover { transform: scale(1.4); background: var(--champagne); }
     .ribbon-dot.active {
-      background: var(--gold);
-      box-shadow: 0 0 0 6px var(--gold-halo);
+      background: var(--champagne-bright);
+      box-shadow: 0 0 0 6px var(--champagne-halo);
     }
     .ribbon-dot .ribbon-tip {
       position: absolute; right: 24px; top: 50%; transform: translateY(-50%);
-      background: var(--charcoal); color: var(--ivory); padding: 6px 12px;
+      background: var(--emerald-deep); color: var(--cream); padding: 6px 12px;
       font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
       white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity 200ms ease;
       border-radius: 2px;
@@ -527,26 +597,29 @@
       gap: 24px; margin-top: 24px;
     }
     .comp {
-      background: var(--paper-2); border: 1px solid var(--dust); border-radius: 4px;
+      background: var(--cream-bright); border: 1px solid var(--paper-shadow); border-radius: 4px;
       padding: 24px;
     }
-    .comp h4 { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 400; margin-bottom: 16px; color: var(--charcoal); }
+    .comp h4 { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 400; margin-bottom: 16px; color: var(--emerald-deep); }
 
     .phase-pill {
       display: inline-block; margin: 4px 4px 4px 0; padding: 5px 12px;
-      border: 1px solid var(--dust); border-radius: 999px;
+      border: 1px solid var(--paper-shadow); border-radius: 999px;
       font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
-      color: var(--ash); background: var(--ivory);
+      color: var(--ash); background: var(--cream);
     }
-    .phase-pill.active { background: var(--charcoal); color: var(--ivory); border-color: var(--charcoal); }
-    .phase-pill .dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--gold); margin-right: 6px; vertical-align: middle; }
+    .phase-pill.active { background: var(--emerald); color: var(--cream); border-color: var(--emerald); }
+    .phase-pill .dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--champagne); margin-right: 6px; vertical-align: middle; }
 
     /* ─────────────────────────────────── footer */
     .proof-footer {
-      background: var(--soot); color: var(--dust);
-      padding: 48px; text-align: center; font-size: 12px; letter-spacing: 0.08em;
+      background: var(--emerald-deep); color: var(--sage);
+      padding: 56px 48px; text-align: center; font-size: 12px; letter-spacing: 0.08em;
+      position: relative; overflow: hidden;
     }
-    .proof-footer strong { color: var(--gold); font-weight: 500; }
+    .proof-footer .corner-floral { opacity: 0.35; width: 200px; height: 200px; }
+    .proof-footer strong { color: var(--champagne); font-weight: 500; }
+    .proof-footer .scripture { color: var(--champagne); display: block; margin-bottom: 12px; font-size: 16px; }
 
     /* ─────────────────────────────────── reduced motion */
     @media (prefers-reduced-motion: reduce) {
@@ -557,8 +630,8 @@
     @media (max-width: 720px) {
       body { padding-right: 16px; }
       .page-section { padding: 64px 24px; }
-      .hero { padding: 120px 24px 80px; }
-      .hero-motif { width: 120px; height: 120px; top: 24px; right: 24px; }
+      .hero { padding: 100px 24px 80px; }
+      .corner-floral { width: 140px !important; height: 140px !important; }
       .proof-tag { left: 24px; }
       .type-row { grid-template-columns: 1fr; gap: 8px; }
       .motif-grid { grid-template-columns: 1fr; gap: 32px; }
@@ -566,11 +639,13 @@
       .ledger-spread { grid-template-columns: 1fr; transform: none; }
       .ledger-spread::before { display: none; }
       .ledger-page { padding: 32px 24px; min-height: auto; }
-      .verso-card, .verso-inner { height: auto; min-height: 540px; }
+      .verso-card, .verso-inner { height: auto; min-height: 580px; }
       .verso-face { padding: 32px 28px; position: relative; }
       .verso-back { transform: rotateY(180deg); }
       .diptych { aspect-ratio: 4 / 5; }
       .diptych-label .quote { font-size: 16px; }
+      .diptych-page { width: calc(50% - 16px); }
+      .diptych-ribbon { width: 36px; }
       .gold-ribbon { width: 16px; }
       .ribbon-line { right: 7px; }
     }
@@ -578,94 +653,183 @@
 </head>
 <body>
 
-  <!-- ──────────────────── GOLD RIBBON (persistent) ──────────────────── -->
+  <!-- ───────── SVG SYMBOL LIBRARY (referenced by <use>) ───────── -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <!-- Floral corner ornament — magnolia + dogwood with gold foliage -->
+      <symbol id="floralCorner" viewBox="0 0 280 280">
+        <!-- curving stems (gold) -->
+        <g fill="none" stroke="#C9A876" stroke-width="0.9" stroke-linecap="round">
+          <path d="M 14 14 Q 80 36 130 80 Q 180 124 220 178" />
+          <path d="M 36 10 Q 60 50 84 90" />
+          <path d="M 10 50 Q 44 70 78 110" />
+          <path d="M 130 22 Q 156 50 186 78" />
+        </g>
+        <!-- darker leaf accents -->
+        <g fill="#8A7044" opacity="0.72">
+          <ellipse cx="50" cy="36" rx="11" ry="3" transform="rotate(45 50 36)" />
+          <ellipse cx="86" cy="64" rx="13" ry="3.4" transform="rotate(48 86 64)" />
+          <ellipse cx="124" cy="92" rx="12" ry="3" transform="rotate(46 124 92)" />
+          <ellipse cx="156" cy="120" rx="13" ry="3.4" transform="rotate(45 156 120)" />
+          <ellipse cx="190" cy="150" rx="11" ry="2.8" transform="rotate(46 190 150)" />
+        </g>
+        <!-- lighter leaves (champagne) -->
+        <g fill="#C9A876">
+          <ellipse cx="40" cy="50" rx="10" ry="2.8" transform="rotate(60 40 50)" />
+          <ellipse cx="74" cy="86" rx="12" ry="3" transform="rotate(58 74 86)" />
+          <ellipse cx="108" cy="118" rx="11" ry="3" transform="rotate(56 108 118)" />
+          <ellipse cx="148" cy="148" rx="13" ry="3.3" transform="rotate(56 148 148)" />
+          <ellipse cx="184" cy="176" rx="10" ry="2.8" transform="rotate(56 184 176)" />
+          <ellipse cx="148" cy="44" rx="9" ry="2.6" transform="rotate(40 148 44)" />
+          <ellipse cx="172" cy="68" rx="10" ry="2.6" transform="rotate(46 172 68)" />
+        </g>
+        <!-- primary flower (magnolia) -->
+        <g transform="translate(60 46)">
+          <g fill="#FBF6E8" stroke="#D8D0BC" stroke-width="0.45">
+            <ellipse cx="0" cy="-13" rx="9" ry="14" />
+            <ellipse cx="0" cy="-13" rx="9" ry="14" transform="rotate(72)" />
+            <ellipse cx="0" cy="-13" rx="9" ry="14" transform="rotate(144)" />
+            <ellipse cx="0" cy="-13" rx="9" ry="14" transform="rotate(216)" />
+            <ellipse cx="0" cy="-13" rx="9" ry="14" transform="rotate(288)" />
+          </g>
+          <circle cx="0" cy="0" r="4.5" fill="#E0C088" />
+          <circle cx="0" cy="0" r="2" fill="#8A7044" />
+        </g>
+        <!-- mid flower -->
+        <g transform="translate(140 110)">
+          <g fill="#FBF6E8" stroke="#D8D0BC" stroke-width="0.4">
+            <ellipse cx="0" cy="-9" rx="6" ry="10" />
+            <ellipse cx="0" cy="-9" rx="6" ry="10" transform="rotate(72)" />
+            <ellipse cx="0" cy="-9" rx="6" ry="10" transform="rotate(144)" />
+            <ellipse cx="0" cy="-9" rx="6" ry="10" transform="rotate(216)" />
+            <ellipse cx="0" cy="-9" rx="6" ry="10" transform="rotate(288)" />
+          </g>
+          <circle cx="0" cy="0" r="3" fill="#E0C088" />
+        </g>
+        <!-- small flower -->
+        <g transform="translate(200 170)">
+          <g fill="#FBF6E8" stroke="#D8D0BC" stroke-width="0.35">
+            <ellipse cx="0" cy="-7" rx="4.5" ry="8" />
+            <ellipse cx="0" cy="-7" rx="4.5" ry="8" transform="rotate(72)" />
+            <ellipse cx="0" cy="-7" rx="4.5" ry="8" transform="rotate(144)" />
+            <ellipse cx="0" cy="-7" rx="4.5" ry="8" transform="rotate(216)" />
+            <ellipse cx="0" cy="-7" rx="4.5" ry="8" transform="rotate(288)" />
+          </g>
+          <circle cx="0" cy="0" r="2.4" fill="#E0C088" />
+        </g>
+        <!-- sparkles -->
+        <g fill="#E0C088" opacity="0.85">
+          <path d="M 110 18 l 0 -6 l 1.2 4.8 l 4.8 1.2 l -4.8 1.2 l -1.2 4.8 l -1.2 -4.8 l -4.8 -1.2 l 4.8 -1.2 z" />
+          <path d="M 226 86 l 0 -4 l 0.8 3.2 l 3.2 0.8 l -3.2 0.8 l -0.8 3.2 l -0.8 -3.2 l -3.2 -0.8 l 3.2 -0.8 z" />
+          <path d="M 174 200 l 0 -5 l 1 4 l 4 1 l -4 1 l -1 4 l -1 -4 l -4 -1 l 4 -1 z" />
+        </g>
+      </symbol>
+
+      <!-- gold filigree glyph (small ornament for dividers) -->
+      <symbol id="filigreeGlyph" viewBox="0 0 24 24">
+        <g fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round">
+          <path d="M 12 4 C 12 8, 10 10, 6 10 C 10 10, 12 12, 12 16 C 12 12, 14 10, 18 10 C 14 10, 12 8, 12 4 Z" fill="currentColor" />
+          <circle cx="12" cy="20" r="1.2" fill="currentColor" />
+        </g>
+      </symbol>
+
+      <!-- inline gold-thread chain link -->
+      <symbol id="chainLink" viewBox="0 0 24 24">
+        <g fill="none" stroke="currentColor" stroke-width="1.6">
+          <path d="M10 14a5 5 0 0 1 0-7l3-3a5 5 0 0 1 7 7l-1.5 1.5"/>
+          <path d="M14 10a5 5 0 0 1 0 7l-3 3a5 5 0 0 1-7-7l1.5-1.5"/>
+        </g>
+      </symbol>
+    </defs>
+  </svg>
+
+  <!-- ───────── GOLD RIBBON (persistent right edge) ───────── -->
   <aside class="gold-ribbon" aria-label="Chronology navigator">
     <div class="ribbon-trigger"></div>
     <div class="ribbon-line"></div>
-    <nav class="ribbon-panel" id="ribbon">
-      <!-- dots injected by JS -->
-    </nav>
+    <nav class="ribbon-panel" id="ribbon"></nav>
   </aside>
 
-  <!-- ──────────────────── HERO ──────────────────── -->
+  <!-- ───────── HERO ───────── -->
   <header class="hero" id="hero">
-    <div class="grain"></div>
-    <span class="proof-tag">Design proof · v0</span>
+    <div class="paper-grain"></div>
+    <svg class="corner-floral tl" aria-hidden="true"><use href="#floralCorner"/></svg>
+    <svg class="corner-floral tr" aria-hidden="true"><use href="#floralCorner"/></svg>
+    <svg class="corner-floral bl" aria-hidden="true"><use href="#floralCorner"/></svg>
+    <svg class="corner-floral br" aria-hidden="true"><use href="#floralCorner"/></svg>
 
-    <!-- ambient motif -->
-    <svg class="hero-motif" viewBox="0 0 240 240" aria-hidden="true">
-      <g fill="none" stroke="currentColor" stroke-width="1.2">
-        <path d="M 70 50 Q 36 120, 70 200 Q 120 220, 170 200 Q 204 120, 170 50 Q 120 32, 70 50 Z" stroke="var(--ivory)" />
-      </g>
-      <g fill="none" stroke="var(--gold)" stroke-linecap="round">
-        <path d="M 120 32 L 116 78 L 128 128 L 112 174 L 124 215" stroke-width="2" />
-        <path d="M 72 58 L 96 100 L 124 116" stroke-width="1.6" />
-        <path d="M 198 130 L 168 152 L 148 178" stroke-width="1.6" />
-        <path d="M 92 168 L 108 184" stroke-width="1.1" />
-      </g>
-    </svg>
+    <span class="proof-tag">Design proof · v1</span>
 
     <div class="hero-inner">
-      <div class="hero-rule"></div>
+      <p class="hero-scripture">1 Corinthians 13:13.</p>
 
-      <!-- placeholder for the wedding photograph -->
+      <h1 class="hero-headline">Gracious <span class="amp">&amp;</span> Nicole</h1>
+      <p class="hero-script">Gracious <span class="amp">&amp;</span> Nicole</p>
+
       <div class="hero-photo">
         <div class="ph-photo" data-label="[wedding photograph · placeholder]"></div>
       </div>
 
-      <h1 class="hero-headline">Grey &amp; Nicole</h1>
       <p class="hero-subline">28 August 2021 · Holy Family Co-Cathedral · Kuwait</p>
     </div>
+
     <div class="hero-scroll"></div>
   </header>
 
-  <!-- ──────────────────── PALETTE ──────────────────── -->
+  <!-- ───────── PALETTE ───────── -->
   <section class="page-section" id="palette">
-    <span class="eyebrow">01 · Surface</span>
-    <h2 class="section-title">Kintsugi palette</h2>
-    <p class="section-note">Warm ivory base. Deep charcoal anchor. Gold used with extreme restraint — only on the motif, the timeline spine, judicial-admission tags, gold-thread links, and active states.</p>
+    <span class="scripture">1 Corinthians 13:13 — Faith, Hope, Love.</span>
+    <h2 class="section-title">The colour story</h2>
+    <p class="section-note">Forest emerald as the anchor, warm cream as the surface, champagne gold as the single accent. Sage breathes between them on lighter pages. Drawn from the wedding stationery — the site wears the dress.</p>
     <span class="gold-rule"></span>
 
     <div class="palette-grid">
-      <div class="swatch"><div class="swatch-color" style="background:var(--ivory)"></div><div class="swatch-meta"><div class="name">ivory</div><div class="hex">#F5F0E8</div></div></div>
-      <div class="swatch"><div class="swatch-color" style="background:var(--paper)"></div><div class="swatch-meta"><div class="name">paper</div><div class="hex">#EDE7D9</div></div></div>
-      <div class="swatch"><div class="swatch-color" style="background:var(--paper-2)"></div><div class="swatch-meta"><div class="name">paper-2 (elevated)</div><div class="hex">#FDFBF6</div></div></div>
-      <div class="swatch"><div class="swatch-color" style="background:var(--dust)"></div><div class="swatch-meta"><div class="name">dust</div><div class="hex">#D4CFC4</div></div></div>
-      <div class="swatch"><div class="swatch-color" style="background:var(--ash)"></div><div class="swatch-meta"><div class="name">ash</div><div class="hex">#8A8680</div></div></div>
-      <div class="swatch"><div class="swatch-color" style="background:var(--soot)"></div><div class="swatch-meta"><div class="name">soot</div><div class="hex">#2D2B28</div></div></div>
-      <div class="swatch"><div class="swatch-color" style="background:var(--charcoal)"></div><div class="swatch-meta"><div class="name">charcoal</div><div class="hex">#1C1A18</div></div></div>
-      <div class="swatch"><div class="swatch-color" style="background:var(--gold)"></div><div class="swatch-meta"><div class="name">gold (accent)</div><div class="hex">#C9A84C</div></div></div>
-      <div class="swatch"><div class="swatch-color" style="background:var(--gold-dim)"></div><div class="swatch-meta"><div class="name">gold-dim (hover)</div><div class="hex">#8A6A2A</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:var(--emerald-deep)"></div><div class="swatch-meta"><div class="name">emerald-deep</div><div class="hex">#14352A</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:var(--emerald)"></div><div class="swatch-meta"><div class="name">emerald</div><div class="hex">#1F3D2E</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:var(--emerald-mid)"></div><div class="swatch-meta"><div class="name">emerald-mid</div><div class="hex">#2D553F</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:var(--emerald-light)"></div><div class="swatch-meta"><div class="name">emerald-light</div><div class="hex">#4F7960</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:var(--sage)"></div><div class="swatch-meta"><div class="name">sage</div><div class="hex">#A8C0B0</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:var(--sage-pale)"></div><div class="swatch-meta"><div class="name">sage-pale</div><div class="hex">#D8E0D6</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:var(--cream-bright)"></div><div class="swatch-meta"><div class="name">cream-bright</div><div class="hex">#FBF6E8</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:var(--cream)"></div><div class="swatch-meta"><div class="name">cream</div><div class="hex">#F5EFE0</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:var(--cream-deep)"></div><div class="swatch-meta"><div class="name">cream-deep (paper)</div><div class="hex">#EDE5D0</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:var(--champagne-bright)"></div><div class="swatch-meta"><div class="name">champagne-bright</div><div class="hex">#E0C088</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:var(--champagne)"></div><div class="swatch-meta"><div class="name">champagne (accent)</div><div class="hex">#C9A876</div></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:var(--champagne-dim)"></div><div class="swatch-meta"><div class="name">champagne-dim</div><div class="hex">#8A7044</div></div></div>
     </div>
   </section>
 
-  <!-- ──────────────────── COLOR OF TIME ──────────────────── -->
+  <!-- ───────── COLOR OF TIME ───────── -->
   <section class="page-section" id="time">
-    <span class="eyebrow">02 · Chronology</span>
-    <h2 class="section-title">Color-of-time ivories</h2>
-    <p class="section-note">Every year of the timeline carries a subtly different ivory hue. The tribunal feels chronology in the air temperature of the page, not just in labels. Differences are intentionally small (Δ ≈ 4–6 units of luminance).</p>
+    <span class="scripture">— And the greatest of these is love.</span>
+    <h2 class="section-title">Color-of-time creams</h2>
+    <p class="section-note">Every year of the timeline carries a subtly different cream tone. The tribunal feels chronology in the air-temperature of the page, not just in labels. Warmest at 2021 — the wedding year. Cooled at the edges.</p>
     <span class="gold-rule"></span>
 
     <div class="time-strip">
-      <div class="time-band" style="background:var(--ivory-2009)">2009</div>
-      <div class="time-band" style="background:var(--ivory-2017)">2017</div>
-      <div class="time-band" style="background:var(--ivory-2018)">2018</div>
-      <div class="time-band" style="background:var(--ivory-2021)">2021 — consent</div>
-      <div class="time-band" style="background:var(--ivory-2022)">2022</div>
-      <div class="time-band" style="background:var(--ivory-2024)">2024 — separation</div>
+      <div class="time-band" style="background:var(--cream-2009)">2009</div>
+      <div class="time-band" style="background:var(--cream-2017)">2017</div>
+      <div class="time-band" style="background:var(--cream-2018)">2018</div>
+      <div class="time-band" style="background:var(--cream-2021)">2021 — consent</div>
+      <div class="time-band" style="background:var(--cream-2022)">2022</div>
+      <div class="time-band" style="background:var(--cream-2024)">2024 — separation</div>
     </div>
   </section>
 
-  <!-- ──────────────────── TYPOGRAPHY ──────────────────── -->
+  <!-- ───────── TYPOGRAPHY ───────── -->
   <section class="page-section" id="type">
-    <span class="eyebrow">03 · Voice</span>
-    <h2 class="section-title">Cormorant Garamond + Satoshi</h2>
-    <p class="section-note">Cormorant for everything emotional and editorial — headings, dates, pull-quotes. Satoshi for everything functional — body, labels, controls, evidence metadata.</p>
+    <span class="scripture">Voice.</span>
+    <h2 class="section-title">Cormorant · Pinyon Script · Satoshi</h2>
+    <p class="section-note">Cormorant Garamond for editorial weight — dates, grounds, pull-quotes. Pinyon Script for romantic accents — the wedding moments. Satoshi for everything functional — body, labels, evidence metadata.</p>
     <span class="gold-rule"></span>
 
     <div class="type-row">
-      <div class="type-label">hero · 88</div>
-      <div class="type-sample-hero">Grey &amp; Nicole</div>
+      <div class="type-label">serif · 88</div>
+      <div class="type-sample-hero">Gracious <span class="amp">&amp;</span> Nicole</div>
+    </div>
+    <div class="type-row">
+      <div class="type-label">script · 64</div>
+      <div class="type-sample-script">Gracious <span class="amp">&amp;</span> Nicole</div>
     </div>
     <div class="type-row">
       <div class="type-label">h1 · 48</div>
@@ -682,7 +846,7 @@
     <div class="type-row">
       <div class="type-label">body · 16</div>
       <div class="type-sample-body">
-        Marriage enjoys the favour of the law. In doubt, the validity of a marriage must be upheld until the contrary is proven (Can. 1060). The Respondent respectfully submits that the First Instance Sentence falls short of the moral certainty required by Can. 1608 §1 and that, on the record itself, no antecedent grave psychic anomaly is shown to have existed in either spouse at the moment of consent on 28 August 2021.
+        Marriage enjoys the favour of the law. In doubt, the validity of a marriage must be upheld until the contrary is proven (Can. 1060). The Respondent respectfully submits that the First Instance Sentence falls short of the moral certainty required by Can. 1608 §1, and that on the record itself no antecedent grave psychic anomaly is shown to have existed in either spouse at the moment of consent on 28 August 2021.
       </div>
     </div>
     <div class="type-row">
@@ -691,90 +855,80 @@
     </div>
   </section>
 
-  <!-- ──────────────────── KINTSUGI MOTIF ──────────────────── -->
+  <!-- ───────── FLORAL MOTIF ───────── -->
   <section class="page-section" id="motif">
-    <span class="eyebrow">04 · Mark</span>
-    <h2 class="section-title">The Kintsugi motif</h2>
-    <p class="section-note">A geometric ceramic vessel with three to four gold seams. Rendered inline at three scales — ambient (240px, slowly rotating), section (120px, static), inline (24px, alongside text).</p>
+    <span class="scripture">Ornament.</span>
+    <h2 class="section-title">The floral corner</h2>
+    <p class="section-note">A single floral SVG — magnolia and dogwood with gold foliage and three sparkles — drawn once, mirrored into all four corners. Used full-scale in the hero, half-scale on ledger pages, vestigial on small cards.</p>
     <span class="gold-rule"></span>
 
     <div class="motif-grid">
       <div class="motif-cell">
-        <svg viewBox="0 0 240 240" width="240" height="240" aria-hidden="true">
-          <path d="M 70 50 Q 36 120, 70 200 Q 120 220, 170 200 Q 204 120, 170 50 Q 120 32, 70 50 Z" fill="none" stroke="var(--charcoal)" stroke-width="1.4" />
-          <g fill="none" stroke="var(--gold)" stroke-linecap="round">
-            <path d="M 120 32 L 116 78 L 128 128 L 112 174 L 124 215" stroke-width="2.2" />
-            <path d="M 72 58 L 96 100 L 124 116" stroke-width="1.6" />
-            <path d="M 198 130 L 168 152 L 148 178" stroke-width="1.6" />
-            <path d="M 92 168 L 108 184" stroke-width="1.1" />
-          </g>
-        </svg>
-        <div class="swatch-meta"><div class="name">Ambient · 240</div><div class="hex">opacity 0.35 · spin 240s</div></div>
+        <svg viewBox="0 0 280 280" width="280" height="280" aria-hidden="true"><use href="#floralCorner"/></svg>
+        <div class="swatch-meta"><div class="name">Full · 280</div><div class="hex">hero · footer · seal stage</div></div>
       </div>
-
       <div class="motif-cell">
-        <svg viewBox="0 0 240 240" width="120" height="120" aria-hidden="true">
-          <path d="M 70 50 Q 36 120, 70 200 Q 120 220, 170 200 Q 204 120, 170 50 Q 120 32, 70 50 Z" fill="none" stroke="var(--charcoal)" stroke-width="1.6" />
-          <g fill="none" stroke="var(--gold)" stroke-linecap="round">
-            <path d="M 120 32 L 116 78 L 128 128 L 112 174 L 124 215" stroke-width="2.6" />
-            <path d="M 72 58 L 96 100 L 124 116" stroke-width="2" />
-            <path d="M 198 130 L 168 152 L 148 178" stroke-width="2" />
-          </g>
-        </svg>
-        <div class="swatch-meta"><div class="name">Section · 120</div><div class="hex">divider, watermark</div></div>
+        <svg viewBox="0 0 280 280" width="160" height="160" aria-hidden="true"><use href="#floralCorner"/></svg>
+        <div class="swatch-meta"><div class="name">Section · 160</div><div class="hex">ledger pages · verso</div></div>
       </div>
-
       <div class="motif-cell">
-        <svg viewBox="0 0 240 240" width="24" height="24" aria-hidden="true">
-          <path d="M 70 50 Q 36 120, 70 200 Q 120 220, 170 200 Q 204 120, 170 50 Q 120 32, 70 50 Z" fill="none" stroke="var(--charcoal)" stroke-width="3" />
-          <g fill="none" stroke="var(--gold)" stroke-linecap="round">
-            <path d="M 120 32 L 124 215" stroke-width="6" />
-          </g>
-        </svg>
-        <div class="swatch-meta"><div class="name">Inline · 24</div><div class="hex">alongside text</div></div>
+        <svg viewBox="0 0 280 280" width="56" height="56" aria-hidden="true"><use href="#floralCorner"/></svg>
+        <div class="swatch-meta"><div class="name">Inline · 56</div><div class="hex">cards · dividers</div></div>
       </div>
+    </div>
+
+    <div class="filigree">
+      <span class="filigree-line"></span>
+      <svg width="18" height="18" class="filigree-glyph" style="color: var(--champagne)" aria-hidden="true"><use href="#filigreeGlyph"/></svg>
+      <span class="filigree-line"></span>
     </div>
   </section>
 
-  <!-- ──────────────────── WAX SEAL UNLOCK ──────────────────── -->
+  <!-- ───────── WAX SEAL ───────── -->
   <section class="page-section" id="seal">
-    <span class="eyebrow">05 · Threshold</span>
-    <h2 class="section-title">The wax seal</h2>
-    <p class="section-note">Protected sections are sealed, not gated. Click the seal · type the password · the seal dissolves and the section opens. Password for this proof is <code style="background:var(--paper); padding:2px 6px; border-radius:2px; font-family:inherit; color:var(--gold-dim)">GreyGotNicked</code>.</p>
+    <span class="scripture">Threshold.</span>
+    <h2 class="section-title">The wedding-invitation seal</h2>
+    <p class="section-note">Protected sections are sealed, not gated. Press the emerald-wax seal · type the password · the seal dissolves and the section opens. Password for this proof is <code style="background:var(--cream-deep); padding:2px 6px; border-radius:2px; font-family:inherit; color:var(--champagne-dim)">GreyGotNicked</code>.</p>
     <span class="gold-rule"></span>
 
     <div class="seal-stage" id="sealStage" tabindex="0">
-      <div class="grain"></div>
+      <div class="paper-grain"></div>
+      <svg class="corner-floral tl" aria-hidden="true"><use href="#floralCorner"/></svg>
+      <svg class="corner-floral br" aria-hidden="true"><use href="#floralCorner"/></svg>
 
       <svg class="wax-seal" id="waxSeal" viewBox="0 0 240 240" aria-label="Press to break the seal">
         <defs>
-          <radialGradient id="sealG" cx="38%" cy="32%" r="78%">
-            <stop offset="0%"   stop-color="#E5C262" />
-            <stop offset="55%"  stop-color="#C9A84C" />
-            <stop offset="100%" stop-color="#7A5A1F" />
+          <radialGradient id="emeraldWax" cx="38%" cy="32%" r="78%">
+            <stop offset="0%"   stop-color="#3F6B52" />
+            <stop offset="55%"  stop-color="#1F3D2E" />
+            <stop offset="100%" stop-color="#0E2A1F" />
           </radialGradient>
-          <filter id="sealNoise"><feTurbulence baseFrequency="2.4" numOctaves="2"/><feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.1 0"/></filter>
+          <linearGradient id="monoGold" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#E5C262" />
+            <stop offset="50%" stop-color="#C9A876" />
+            <stop offset="100%" stop-color="#8A7044" />
+          </linearGradient>
+          <filter id="waxNoise"><feTurbulence baseFrequency="2.4" numOctaves="2"/><feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.12 0"/></filter>
         </defs>
 
         <g class="wax-half-left">
-          <path d="M 120 18 C 70 22, 28 60, 24 118 C 22 158, 44 196, 90 218 C 102 222, 116 222, 120 220 L 120 18 Z" fill="url(#sealG)" />
-          <path d="M 120 18 C 70 22, 28 60, 24 118 C 22 158, 44 196, 90 218 C 102 222, 116 222, 120 220 L 120 18 Z" fill="black" filter="url(#sealNoise)" opacity="0.4" />
+          <path d="M 120 18 C 70 22, 28 60, 24 118 C 22 158, 44 196, 90 218 C 102 222, 116 222, 120 220 L 120 18 Z" fill="url(#emeraldWax)" />
+          <path d="M 120 18 C 70 22, 28 60, 24 118 C 22 158, 44 196, 90 218 C 102 222, 116 222, 120 220 L 120 18 Z" fill="black" filter="url(#waxNoise)" opacity="0.4" />
         </g>
         <g class="wax-half-right">
-          <path d="M 120 18 C 170 22, 212 60, 216 118 C 218 158, 196 196, 150 218 C 138 222, 124 222, 120 220 L 120 18 Z" fill="url(#sealG)" />
-          <path d="M 120 18 C 170 22, 212 60, 216 118 C 218 158, 196 196, 150 218 C 138 222, 124 222, 120 220 L 120 18 Z" fill="black" filter="url(#sealNoise)" opacity="0.4" />
+          <path d="M 120 18 C 170 22, 212 60, 216 118 C 218 158, 196 196, 150 218 C 138 222, 124 222, 120 220 L 120 18 Z" fill="url(#emeraldWax)" />
+          <path d="M 120 18 C 170 22, 212 60, 216 118 C 218 158, 196 196, 150 218 C 138 222, 124 222, 120 220 L 120 18 Z" fill="black" filter="url(#waxNoise)" opacity="0.4" />
         </g>
 
-        <!-- Monogram G·N -->
-        <text x="120" y="148" text-anchor="middle"
+        <!-- G&N monogram in champagne gold -->
+        <text x="120" y="150" text-anchor="middle"
               font-family="Cormorant Garamond, serif" font-style="italic" font-weight="500"
-              font-size="86" fill="#3D2A0C" opacity="0.78">G·N</text>
+              font-size="92" fill="url(#monoGold)">G&amp;N</text>
 
-        <!-- Crack (initially hidden, drawn on click) -->
         <path class="crack" d="M 120 18 L 116 60 L 126 100 L 114 140 L 124 180 L 118 220" />
       </svg>
 
-      <div class="seal-instruction">Press the seal to break it</div>
+      <div class="seal-instruction">Break the seal · enter the archive</div>
 
       <div class="seal-input-wrap">
         <input type="password" class="seal-input" id="sealInput" placeholder="password" autocomplete="off" aria-label="Enter section password" />
@@ -782,6 +936,7 @@
       </div>
 
       <div class="unlocked-panel">
+        <span class="script-accent">welcome</span>
         <h3>Timeline &amp; Evidence</h3>
         <p>The veil is lifted. The chronology, evidence, and supporting documents are now open to review.</p>
       </div>
@@ -790,17 +945,17 @@
     </div>
   </section>
 
-  <!-- ──────────────────── MEMORY LEDGER ──────────────────── -->
+  <!-- ───────── MEMORY LEDGER ───────── -->
   <section class="page-section" id="ledger-section">
-    <span class="eyebrow">06 · Timeline</span>
+    <span class="scripture">Timeline.</span>
     <h2 class="section-title">Memory Ledger — spread</h2>
-    <p class="section-note">The timeline reads as an open ledger. Left page is narrative — date, photograph, prose, pull-quote. Right page is evidence — typed cards with credibility bars, canon references, and gold-thread links to Appeal arguments. Page turns transition with an 8° lift on the seam.</p>
+    <p class="section-note">The timeline reads as an open ledger. Left page is narrative — date, photograph, prose, pull-quote. Right page is evidence — typed cards with credibility bars, canon references, and gold-thread links to the Appeal. Floral ornaments breathe in opposing corners; the page-seam carries the binding shadow.</p>
     <span class="gold-rule"></span>
 
     <div class="ledger">
       <article class="ledger-spread" aria-label="Memory Ledger spread — 28 November 2018, first date">
-        <!-- LEFT page : narrative -->
         <section class="ledger-page left">
+          <svg class="ledger-corner" aria-hidden="true"><use href="#floralCorner"/></svg>
           <div class="ledger-phase"><span class="pill"></span>Courtship · First Date</div>
           <h3 class="ledger-date">28 November 2018</h3>
           <div class="ledger-divider"></div>
@@ -811,14 +966,14 @@
 
           <div class="ledger-narrative">
             <p>A Turkish restaurant in the Avenues Mall, on a Wednesday evening in late November. The relationship that had grown out of the CYouQ8 youth group, the desert chalet conversation, and a year of friendship became official at this table.</p>
-            <p>Three years of courtship followed — across the months of conversation, family Sunday lunches, and the slow, sincere building of trust between two people who had first met in Sir Markos' tuition classes nearly a decade earlier.</p>
+            <p>Three years of courtship followed — across months of conversation, family Sunday lunches, and the slow, sincere building of trust between two people who had first met in Sir Markos' tuition classes nearly a decade earlier.</p>
           </div>
 
           <blockquote class="ledger-quote">"They found each other again in faith, in 2017."</blockquote>
         </section>
 
-        <!-- RIGHT page : evidence -->
         <section class="ledger-page right">
+          <svg class="ledger-corner" aria-hidden="true"><use href="#floralCorner"/></svg>
           <div class="ledger-evidence-title">Evidence &amp; References</div>
 
           <div class="ev-card phase-courtship">
@@ -831,7 +986,7 @@
             </div>
             <span class="ev-meter bars-3" aria-label="corroborated"><span></span><span></span><span></span></span>
             <a class="ev-link" href="#" title="Linked to Appeal Ground IV" aria-label="Linked to Appeal">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M10 14a5 5 0 0 1 0-7l3-3a5 5 0 0 1 7 7l-1.5 1.5"/><path d="M14 10a5 5 0 0 1 0 7l-3 3a5 5 0 0 1-7-7l1.5-1.5"/></svg>
+              <svg width="14" height="14" aria-hidden="true"><use href="#chainLink"/></svg>
             </a>
           </div>
 
@@ -843,9 +998,9 @@
               <div class="ev-title">First WhatsApp chain</div>
               <div class="ev-meta">chat · 28–30 Nov 2018 · screenshots</div>
             </div>
-            <span class="ev-meter bars-2" aria-label="documented"><span></span><span></span><span></span></span>
+            <span class="ev-meter bars-2"><span></span><span></span><span></span></span>
             <a class="ev-link" href="#" title="Linked to Appeal Ground IV" aria-label="Linked to Appeal">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M10 14a5 5 0 0 1 0-7l3-3a5 5 0 0 1 7 7l-1.5 1.5"/><path d="M14 10a5 5 0 0 1 0 7l-3 3a5 5 0 0 1-7-7l1.5-1.5"/></svg>
+              <svg width="14" height="14" aria-hidden="true"><use href="#chainLink"/></svg>
             </a>
           </div>
 
@@ -857,7 +1012,7 @@
               <div class="ev-title">Restaurant receipt</div>
               <div class="ev-meta">scanned · Nov 2018</div>
             </div>
-            <span class="ev-meter bars-3" aria-label="verified"><span></span><span></span><span></span></span>
+            <span class="ev-meter bars-3"><span></span><span></span><span></span></span>
           </div>
 
           <div class="ledger-canon">
@@ -875,18 +1030,20 @@
     </div>
   </section>
 
-  <!-- ──────────────────── VERSO CARD ──────────────────── -->
+  <!-- ───────── VERSO CARD ───────── -->
   <section class="page-section" id="verso-section">
-    <span class="eyebrow">07 · Appeal</span>
+    <span class="scripture">Appeal.</span>
     <h2 class="section-title">The Verso card</h2>
-    <p class="section-note">Each appeal ground is a card with two faces. Front is the legal argument. Click <em>VERSO</em> — the card flips like a postcard to reveal supporting evidence. Replaces the awkward desktop dual-panel and collapses cleanly on mobile.</p>
+    <p class="section-note">Each appeal ground is a card with two faces. Front is the legal argument. Click <em>verso</em> — the card flips like a wedding-invitation card to reveal supporting evidence. Floral corners breathe in opposite diagonals.</p>
     <span class="gold-rule"></span>
 
     <div class="verso-card" id="versoCard" tabindex="0" aria-label="Appeal card — Ground IV">
       <div class="verso-inner">
 
-        <!-- FRONT -->
         <section class="verso-face verso-front">
+          <svg class="corner-floral tl" aria-hidden="true"><use href="#floralCorner"/></svg>
+          <svg class="corner-floral br" aria-hidden="true"><use href="#floralCorner"/></svg>
+
           <div class="verso-ground">Ground IV · Post-Factum Reasoning</div>
           <h3 class="verso-heading">The Sentence reasons backward<br>from post-marital fracture.</h3>
           <div class="verso-body">
@@ -898,16 +1055,16 @@
           <button class="verso-tab" data-flip="back" aria-label="Flip to supporting evidence">verso →</button>
         </section>
 
-        <!-- BACK -->
         <section class="verso-face verso-back">
+          <svg class="corner-floral tl" aria-hidden="true"><use href="#floralCorner"/></svg>
+          <svg class="corner-floral br" aria-hidden="true"><use href="#floralCorner"/></svg>
+
           <div class="verso-ground">Verso · Supporting Evidence</div>
           <h3 class="verso-heading">What the record actually shows</h3>
           <div class="verso-evidence">
 
             <div class="ev-card phase-marriage">
-              <span class="ev-icon" aria-hidden="true">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 3h9l5 5v13H6z"/><path d="M15 3v5h5"/></svg>
-              </span>
+              <span class="ev-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 3h9l5 5v13H6z"/><path d="M15 3v5h5"/></svg></span>
               <div class="ev-body">
                 <div class="ev-title">Sentence §1 — "went off well"</div>
                 <div class="ev-meta">judicial admission · verified</div>
@@ -916,9 +1073,7 @@
             </div>
 
             <div class="ev-card phase-marriage">
-              <span class="ev-icon" aria-hidden="true">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 3h9l5 5v13H6z"/><path d="M15 3v5h5"/></svg>
-              </span>
+              <span class="ev-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 3h9l5 5v13H6z"/><path d="M15 3v5h5"/></svg></span>
               <div class="ev-body">
                 <div class="ev-title">Sentence §2 — "appeared to be happy"</div>
                 <div class="ev-meta">judicial admission · verified</div>
@@ -927,20 +1082,16 @@
             </div>
 
             <div class="ev-card phase-tribunal">
-              <span class="ev-icon" aria-hidden="true">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
-              </span>
+              <span class="ev-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
               <div class="ev-body">
                 <div class="ev-title">6 January 2024 — last day together</div>
-                <div class="ev-meta">new evidence · documented · six days before separation</div>
+                <div class="ev-meta">new evidence · six days before separation</div>
               </div>
               <span class="ev-meter bars-3"><span></span><span></span><span></span></span>
             </div>
 
             <div class="ev-card phase-reconnection">
-              <span class="ev-icon" aria-hidden="true">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12a9 9 0 1 0 4-7"/><path d="M3 4v6h6"/></svg>
-              </span>
+              <span class="ev-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12a9 9 0 1 0 4-7"/><path d="M3 4v6h6"/></svg></span>
               <div class="ev-body">
                 <div class="ev-title">Aug–Sep 2023 — Valerie voice-call archive</div>
                 <div class="ev-meta">7 calls · 34m 38s · "my brother in law" ×2</div>
@@ -949,9 +1100,7 @@
             </div>
 
             <div class="ev-card phase-marriage">
-              <span class="ev-icon" aria-hidden="true">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-              </span>
+              <span class="ev-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
               <div class="ev-body">
                 <div class="ev-title">Nov 2023 — affectionate spousal-call cluster</div>
                 <div class="ev-meta">six calls · "Babu" / "I love you" · car-repair logistics</div>
@@ -967,44 +1116,64 @@
     </div>
   </section>
 
-  <!-- ──────────────────── TWO TRUTHS DIPTYCH ──────────────────── -->
+  <!-- ───────── FOLDED-LETTER DIPTYCH ───────── -->
   <section class="page-section" id="diptych-section">
-    <span class="eyebrow">08 · Contradiction</span>
-    <h2 class="section-title">Two Truths diptych</h2>
-    <p class="section-note">For each contradiction in the First Instance Sentence — a single image torn down the middle, gold leafing the tear edge. Hover separates the halves. Click the gold lightning glyph to open the canonical analysis (Can. 1608 §1 moral-certainty bar).</p>
+    <span class="scripture">Contradiction.</span>
+    <h2 class="section-title">The folded-letter diptych</h2>
+    <p class="section-note">For each contradiction in the First Instance Sentence — two pages of a folded letter, held closed by an emerald silk ribbon and a gold G&amp;N seal. Hover the letter to lift the pages. Click the seal to open the canonical analysis (Can. 1608 §1 moral-certainty bar).</p>
     <span class="gold-rule"></span>
 
     <div class="diptych" id="diptych" role="figure" aria-label="Sentence §1 versus Sentence §30 — internal contradiction">
-      <div class="diptych-half left"></div>
-      <div class="diptych-half right"></div>
+      <div class="diptych-page left">
+        <div class="diptych-label">
+          <span class="eyebrow">Sentence §1</span>
+          <p class="quote">"The nuptials and the wedding celebrations went off well."</p>
+        </div>
+      </div>
+      <div class="diptych-page right">
+        <div class="diptych-label">
+          <span class="eyebrow">Sentence §30</span>
+          <p class="quote">"Both parties lacked the capacity to assume the essential obligations of marriage."</p>
+        </div>
+      </div>
 
-      <!-- gold tear filigree -->
-      <svg class="diptych-tear" viewBox="0 0 30 600" preserveAspectRatio="none" aria-hidden="true">
-        <path d="M15 0 L13 60 L17 110 L13 170 L17 220 L13 280 L17 340 L13 400 L17 460 L13 520 L15 600" fill="none" stroke="currentColor" stroke-width="1" opacity="0.85" />
-        <path d="M15 0 L12 60 L18 110 L12 170 L18 220 L12 280 L18 340 L12 400 L18 460 L12 520 L15 600" fill="none" stroke="currentColor" stroke-width="0.3" opacity="0.5" />
+      <!-- emerald silk ribbon -->
+      <svg class="diptych-ribbon" viewBox="0 0 56 600" preserveAspectRatio="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="ribbonShade" x1="0%" x2="100%">
+            <stop offset="0%"   stop-color="#0E2A1F" />
+            <stop offset="35%"  stop-color="#2D553F" />
+            <stop offset="65%"  stop-color="#2D553F" />
+            <stop offset="100%" stop-color="#0E2A1F" />
+          </linearGradient>
+        </defs>
+        <rect x="0" y="0" width="56" height="600" fill="url(#ribbonShade)" />
+        <rect x="10" y="0" width="1" height="600" fill="#0E2A1F" opacity="0.5" />
+        <rect x="45" y="0" width="1" height="600" fill="#0E2A1F" opacity="0.5" />
       </svg>
 
-      <div class="diptych-label left">
-        <span class="eyebrow">Sentence §1</span>
-        <p class="quote">"The nuptials and the wedding celebrations went off well."</p>
-      </div>
-      <div class="diptych-label right">
-        <span class="eyebrow">Sentence §30</span>
-        <p class="quote">"Both parties lacked the capacity to assume the essential obligations of marriage."</p>
-      </div>
-
-      <!-- lightning glyph -->
-      <svg class="diptych-bolt" viewBox="0 0 24 24" fill="currentColor" aria-label="Open canonical analysis">
-        <path d="M13 2L4 14h6l-1 8 9-12h-6z"/>
+      <!-- gold G&N wax seal at the ribbon's centre -->
+      <svg class="diptych-seal" viewBox="0 0 88 88" aria-label="Open canonical analysis">
+        <defs>
+          <radialGradient id="diptychSealG" cx="38%" cy="32%" r="78%">
+            <stop offset="0%"   stop-color="#3F6B52" />
+            <stop offset="60%"  stop-color="#1F3D2E" />
+            <stop offset="100%" stop-color="#0E2A1F" />
+          </radialGradient>
+        </defs>
+        <circle cx="44" cy="44" r="40" fill="url(#diptychSealG)" stroke="#0E2A1F" stroke-width="1" />
+        <text x="44" y="56" text-anchor="middle"
+              font-family="Cormorant Garamond, serif" font-style="italic" font-weight="500"
+              font-size="34" fill="url(#monoGold)">G&amp;N</text>
       </svg>
     </div>
   </section>
 
-  <!-- ──────────────────── COMPONENT LIBRARY ──────────────────── -->
+  <!-- ───────── COMPONENTS ───────── -->
   <section class="page-section" id="components">
-    <span class="eyebrow">09 · Components</span>
+    <span class="scripture">Building blocks.</span>
     <h2 class="section-title">Component library — first pass</h2>
-    <p class="section-note">The smallest building blocks: phase pills, credibility meters, evidence cards, inline canon chips, fact-tag classifiers. All reused across Timeline and Appeal.</p>
+    <p class="section-note">The smallest pieces: phase pills, credibility meters, evidence cards, inline canon chips, fact-tag classifiers. All reused across Timeline and Appeal.</p>
     <span class="gold-rule"></span>
 
     <div class="comp-grid">
@@ -1058,8 +1227,8 @@
 
       <div class="comp">
         <h4>Gold-thread link</h4>
-        <p style="font-size:14px;">A small gold chain-link top-right of any evidence card means this exhibit is referenced in the Appeal. Click → drawer in Phase 2.</p>
-        <div class="ev-card phase-marriage" style="margin-top: 16px;">
+        <p style="font-size:14px;">A champagne chain-link top-right of any evidence card means this exhibit is referenced in the Appeal. Click → drawer in Phase 2.</p>
+        <div class="ev-card phase-engagement" style="margin-top: 16px;">
           <span class="ev-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="1"/><circle cx="12" cy="12" r="3"/></svg></span>
           <div class="ev-body">
             <div class="ev-title">Engagement photograph #14</div>
@@ -1067,7 +1236,7 @@
           </div>
           <span class="ev-meter bars-3"><span></span><span></span><span></span></span>
           <a class="ev-link" href="#" title="Linked to Appeal Ground I + IV">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M10 14a5 5 0 0 1 0-7l3-3a5 5 0 0 1 7 7l-1.5 1.5"/><path d="M14 10a5 5 0 0 1 0 7l-3 3a5 5 0 0 1-7-7l1.5-1.5"/></svg>
+            <svg width="14" height="14" aria-hidden="true"><use href="#chainLink"/></svg>
           </a>
         </div>
       </div>
@@ -1075,25 +1244,28 @@
     </div>
   </section>
 
-  <!-- ──────────────────── FOOTER ──────────────────── -->
+  <!-- ───────── FOOTER ───────── -->
   <footer class="proof-footer">
-    <p>greywedsnicole · <strong>design proof v0</strong> · phase 1 of 3 · for stakeholder review before Next.js scaffold</p>
+    <svg class="corner-floral bl" aria-hidden="true"><use href="#floralCorner"/></svg>
+    <svg class="corner-floral br" aria-hidden="true"><use href="#floralCorner"/></svg>
+    <span class="scripture">— and the greatest of these is love. (1 Corinthians 13:13)</span>
+    <p>greywedsnicole · <strong>design proof v1</strong> · phase 1 of 3 · for stakeholder review before Next.js scaffold</p>
     <p style="margin-top: 8px; opacity: 0.6;">All photographs are placeholders. Static export target: Namecheap shared hosting.</p>
   </footer>
 
   <script>
-    // ─────────────── Gold Ribbon: build chronology dots from sections ───────────────
+    // ─────────────── Gold Ribbon: chronology dots ───────────────
     const ribbonAnchors = [
-      { id: 'hero',             label: '2021 · Hero' },
-      { id: 'palette',          label: 'Palette' },
-      { id: 'time',             label: 'Color of time' },
-      { id: 'type',             label: 'Typography' },
-      { id: 'motif',            label: 'Kintsugi motif' },
-      { id: 'seal',             label: 'Wax seal' },
-      { id: 'ledger-section',   label: 'Memory Ledger' },
-      { id: 'verso-section',    label: 'Verso card' },
-      { id: 'diptych-section',  label: 'Two Truths' },
-      { id: 'components',       label: 'Components' },
+      { id: 'hero',            label: 'Hero' },
+      { id: 'palette',         label: 'Palette' },
+      { id: 'time',            label: 'Color of time' },
+      { id: 'type',            label: 'Typography' },
+      { id: 'motif',           label: 'Floral motif' },
+      { id: 'seal',            label: 'Wax seal' },
+      { id: 'ledger-section',  label: 'Memory Ledger' },
+      { id: 'verso-section',   label: 'Verso card' },
+      { id: 'diptych-section', label: 'Folded letter' },
+      { id: 'components',      label: 'Components' },
     ];
     const ribbon = document.getElementById('ribbon');
     ribbonAnchors.forEach(({ id, label }) => {
@@ -1107,7 +1279,6 @@
       ribbon.appendChild(dot);
     });
 
-    // Active-dot tracking via IntersectionObserver
     const ribbonDots = [...document.querySelectorAll('.ribbon-dot')];
     const sectionObs = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -1121,7 +1292,7 @@
       if (el) sectionObs.observe(el);
     });
 
-    // ─────────────── Wax Seal unlock ───────────────
+    // ─────────────── Wax seal unlock ───────────────
     const stage   = document.getElementById('sealStage');
     const seal    = document.getElementById('waxSeal');
     const input   = document.getElementById('sealInput');
@@ -1158,7 +1329,7 @@
       input.value = ''; hint.textContent = 'Type · then press Enter';
     });
 
-    // ─────────────── Verso card flip ───────────────
+    // ─────────────── Verso flip ───────────────
     const versoCard = document.getElementById('versoCard');
     versoCard.querySelectorAll('[data-flip]').forEach(btn => {
       btn.addEventListener('click', (e) => {
@@ -1173,13 +1344,13 @@
       }
     });
 
-    // ─────────────── Two Truths · bolt click (placeholder analysis) ───────────────
-    document.querySelector('.diptych-bolt')?.addEventListener('click', (e) => {
+    // ─────────────── Folded-letter seal · click reveals analysis ───────────────
+    document.querySelector('.diptych-seal')?.addEventListener('click', (e) => {
       e.stopPropagation();
-      alert('Canonical analysis · Can. 1608 §1\n\nMoral certainty must exclude well-founded or reasonable doubt (Pius XII, 1 Oct 1942). A judgement that admits §1 ("went off well") and concludes §30 (incapacity at consent) cannot meet this standard without bridging argument.\n\n(Phase 2 will replace this with an inline expansion panel.)');
+      alert('Canonical analysis · Can. 1608 §1\n\nMoral certainty must exclude well-founded or reasonable doubt (Pius XII, 1 Oct 1942). A judgement that admits §1 ("went off well") and concludes §30 (incapacity at consent) cannot meet this standard without bridging argument.\n\n(Phase 2 replaces this alert with an inline expansion panel.)');
     });
 
-    // ─────────────── Tribunal keystrokes (preview) ───────────────
+    // ─────────────── Tribunal keystrokes ───────────────
     document.addEventListener('keydown', (e) => {
       if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
       if (e.key === 'h') document.getElementById('hero')?.scrollIntoView({behavior:'smooth'});
