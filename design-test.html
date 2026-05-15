@@ -1,0 +1,1829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gracious &amp; Nicole · 28 August 2021</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Pinyon+Script&display=swap" rel="stylesheet" />
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --emerald-deep:    #14352A;
+      --emerald:         #1F3D2E;
+      --emerald-mid:     #2D553F;
+      --emerald-light:   #4F7960;
+      --sage:            #A8C0B0;
+      --sage-pale:       #D8E0D6;
+      --cream:           #F5EFE0;
+      --cream-deep:      #EDE5D0;
+      --cream-bright:    #FBF6E8;
+      --paper-shadow:    #C7BFA8;
+      --champagne:       #C9A876;
+      --champagne-bright:#E0C088;
+      --champagne-dim:   #8A7044;
+      --champagne-soft:  rgba(201, 168, 118, 0.18);
+      --champagne-halo:  rgba(201, 168, 118, 0.30);
+      --ink:             #1C1A18;
+      --ash:             #6B7A6F;
+
+      --cream-2009: #F0E9D5;
+      --cream-2017: #F2EDD8;
+      --cream-2018: #F4EFDB;
+      --cream-2021: #F8F2DE;
+      --cream-2022: #F4EEDA;
+      --cream-2024: #EDE7D4;
+
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-elastic: cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Satoshi', system-ui, -apple-system, sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      line-height: 1.7;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+      padding-right: 24px;
+      overflow-x: hidden;
+    }
+
+    /* ───────────── paper texture ───────────── */
+    .paper-grain {
+      position: absolute; inset: 0; pointer-events: none;
+      opacity: 0.18; mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='400'><filter id='p'><feTurbulence type='fractalNoise' baseFrequency='0.04' numOctaves='5'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.55 0'/></filter><rect width='100%' height='100%' filter='url(%23p)'/></svg>");
+    }
+
+    /* ───────────── layout primitives ───────────── */
+    .page-section {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 96px 48px;
+      position: relative;
+    }
+    .eyebrow {
+      font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--ash); font-weight: 500;
+    }
+    .scripture {
+      font-family: 'Cormorant Garamond', serif; font-style: italic;
+      font-size: 13px; color: var(--champagne-dim); letter-spacing: 0.04em;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 44px; font-weight: 400; letter-spacing: 0.005em;
+      color: var(--emerald-deep); margin-top: 8px;
+    }
+    .section-script {
+      font-family: 'Pinyon Script', cursive;
+      font-size: 36px; color: var(--champagne-dim); margin-top: -8px;
+    }
+    .section-note {
+      max-width: 640px; color: var(--ink); opacity: 0.8; margin-top: 16px; font-size: 14.5px;
+    }
+    .gold-rule {
+      display: block; width: 80px; height: 1px; background: var(--champagne);
+      margin: 32px 0 24px;
+    }
+    .filigree {
+      display: flex; align-items: center; justify-content: center; gap: 12px;
+      margin: 48px auto; max-width: 320px;
+    }
+    .filigree-line { height: 1px; background: var(--champagne); flex: 1; opacity: 0.7; }
+    .filigree-glyph { color: var(--champagne); font-size: 16px; }
+
+    /* ───────────── corner florals ───────────── */
+    .corner-floral {
+      position: absolute; width: 280px; height: 280px; z-index: 1;
+      pointer-events: none; opacity: 0.95;
+    }
+    .corner-floral.tl { top: 0; left: 0; }
+    .corner-floral.tr { top: 0; right: 0; transform: scaleX(-1); }
+    .corner-floral.bl { bottom: 0; left: 0; transform: scaleY(-1); }
+    .corner-floral.br { bottom: 0; right: 0; transform: scale(-1, -1); }
+
+    /* drifting petals */
+    .petal {
+      position: absolute; width: 14px; height: 14px;
+      pointer-events: none; opacity: 0;
+      animation: petal-drift 7s linear infinite;
+    }
+    @keyframes petal-drift {
+      0%   { opacity: 0; transform: translateY(0) rotate(0deg); }
+      10%  { opacity: 0.7; }
+      90%  { opacity: 0.7; }
+      100% { opacity: 0; transform: translateY(80vh) rotate(360deg); }
+    }
+    .petal-1 { left: 8%;  top: 6%; animation-delay: 0s; }
+    .petal-2 { left: 14%; top: 3%; animation-delay: 1.8s; }
+    .petal-3 { right: 10%; top: 5%; animation-delay: 3.2s; }
+    .petal-4 { right: 16%; top: 8%; animation-delay: 5s; }
+
+    /* ───────────── hero ───────────── */
+    .hero {
+      position: relative; overflow: hidden;
+      background: linear-gradient(180deg, var(--emerald-deep) 0%, var(--emerald) 60%, var(--emerald-mid) 100%);
+      color: var(--cream);
+      padding: 120px 48px 160px;
+      min-height: 100vh;
+    }
+    .hero-inner {
+      max-width: 1180px; margin: 0 auto;
+      display: flex; flex-direction: column; align-items: center; gap: 32px;
+      position: relative; z-index: 2;
+      text-align: center;
+    }
+    .hero-scripture {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px; color: var(--cream); opacity: 0.92; font-style: normal;
+      letter-spacing: 0.04em;
+    }
+    .hero-headline {
+      font-family: 'Pinyon Script', cursive;
+      font-weight: 400; letter-spacing: 0.01em;
+      font-size: clamp(80px, 14vw, 168px);
+      color: var(--cream); line-height: 1;
+    }
+    .hero-headline .amp { color: var(--champagne-bright); padding: 0 12px; }
+    .hero-divider {
+      width: 100px; height: 1px; background: var(--champagne); opacity: 0.7;
+      margin: 8px 0;
+    }
+    .hero-subline {
+      font-size: 12px; letter-spacing: 0.32em; text-transform: uppercase;
+      color: var(--sage); font-weight: 500;
+    }
+    .hero-date {
+      font-family: 'Cormorant Garamond', serif; font-style: italic;
+      font-size: 22px; color: var(--cream); opacity: 0.85;
+    }
+    .hero-scroll {
+      position: absolute; bottom: 48px; left: 50%; transform: translateX(-50%);
+      width: 1px; height: 48px; background: var(--champagne);
+      animation: scrollPulse 2400ms ease-in-out infinite;
+    }
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.4; }
+      50%      { opacity: 1; }
+    }
+    .proof-tag {
+      position: absolute; top: 24px; left: 48px; z-index: 3;
+      font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--champagne); font-weight: 500;
+    }
+
+    /* ───────────── scroll narrative ───────────── */
+    .narrative {
+      background: var(--cream);
+      padding: 160px 48px;
+      position: relative;
+    }
+    .narrative-inner {
+      max-width: 760px; margin: 0 auto;
+      display: flex; flex-direction: column; gap: 96px;
+      align-items: center; text-align: center;
+    }
+    .fragment {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(24px, 3.4vw, 38px); font-style: italic; line-height: 1.4;
+      color: var(--emerald-deep); max-width: 720px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 1200ms var(--ease), transform 1200ms var(--ease);
+    }
+    .fragment.in-view { opacity: 1; transform: translateY(0); }
+    .fragment .accent { color: var(--champagne-dim); font-style: italic; }
+    .fragment.pull {
+      font-size: clamp(28px, 4vw, 44px);
+      color: var(--champagne-dim);
+      border-top: 1px solid var(--champagne);
+      border-bottom: 1px solid var(--champagne);
+      padding: 32px 16px;
+    }
+    .fragment-meta {
+      display: block; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--ash); font-style: normal; margin-top: 16px;
+    }
+    .fragment-date {
+      font-family: 'Pinyon Script', cursive;
+      font-size: 28px; color: var(--champagne); margin-top: 8px;
+    }
+
+    /* ───────────── entry gates (three cards) ───────────── */
+    .entries {
+      background: var(--cream-deep); padding: 120px 48px;
+      position: relative;
+    }
+    .entries-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+    }
+    .entries-header { grid-column: 1 / -1; text-align: center; margin-bottom: 32px; }
+    .entry-card {
+      background: var(--cream-bright); border: 1px solid var(--paper-shadow);
+      border-radius: 4px; padding: 48px 32px;
+      box-shadow: 0 4px 20px rgba(20, 53, 42, 0.06);
+      text-align: center; cursor: pointer; position: relative; overflow: hidden;
+      transition: transform 400ms var(--ease), box-shadow 400ms var(--ease);
+    }
+    .entry-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 36px rgba(20, 53, 42, 0.16);
+    }
+    .entry-card .ribbon-corner {
+      position: absolute; top: 0; right: 0;
+      width: 36px; height: 84px;
+      transition: transform 400ms var(--ease-elastic);
+      transform-origin: top center;
+    }
+    .entry-card:hover .ribbon-corner {
+      transform: translateY(20px) scaleY(1.3);
+    }
+    .entry-card-icon { color: var(--champagne); margin-bottom: 16px; }
+    .entry-card-title {
+      font-family: 'Cormorant Garamond', serif; font-size: 26px;
+      color: var(--emerald-deep); margin-bottom: 8px;
+    }
+    .entry-card-desc { font-size: 13.5px; color: var(--ink); opacity: 0.72; line-height: 1.6; max-width: 260px; margin: 0 auto; }
+    .entry-card-lock { margin-top: 16px; font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--champagne-dim); }
+    .entry-card-lock.public { color: var(--ash); }
+
+    /* ───────────── wax seal gate ───────────── */
+    .seal-gate {
+      position: relative; overflow: hidden;
+      background: linear-gradient(180deg, var(--emerald-deep), var(--emerald));
+      padding: 120px 48px; min-height: 720px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 32px;
+    }
+    .seal-gate .corner-floral { opacity: 0.5; width: 240px; height: 240px; }
+
+    .seal-gate-eyebrow {
+      color: var(--sage); font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase;
+      position: relative; z-index: 2; opacity: 0.85;
+    }
+    .seal-gate-title {
+      font-family: 'Cormorant Garamond', serif;
+      color: var(--cream); font-size: clamp(32px, 4.4vw, 56px); font-weight: 400;
+      text-align: center; max-width: 720px; position: relative; z-index: 2;
+      line-height: 1.2;
+    }
+    .seal-gate-script {
+      font-family: 'Pinyon Script', cursive;
+      color: var(--champagne-bright); font-size: 44px; position: relative; z-index: 2;
+      margin-top: -16px;
+    }
+
+    .wax-seal {
+      width: 260px; height: 260px; cursor: pointer; position: relative; z-index: 2;
+      animation: sealBreath 4s ease-in-out infinite;
+      transition: transform 600ms var(--ease);
+      filter: drop-shadow(0 8px 24px rgba(20, 53, 42, 0.55));
+    }
+    @keyframes sealBreath {
+      0%, 100% { transform: scale(1); }
+      50%      { transform: scale(1.012); }
+    }
+    .wax-seal .crack {
+      stroke: #0E2A1F; stroke-width: 3; fill: none;
+      stroke-dasharray: 500; stroke-dashoffset: 500;
+      transition: stroke-dashoffset 700ms var(--ease);
+    }
+    .wax-half-left, .wax-half-right { transition: transform 700ms var(--ease); transform-origin: center; }
+
+    /* G and N split apart with the wax halves; ampersand fades */
+    .seal-G, .seal-amp, .seal-N {
+      transition: transform 700ms var(--ease), opacity 500ms ease;
+    }
+
+    .seal-gate.cracking .wax-seal .crack { stroke-dashoffset: 0; }
+    .seal-gate.cracking .wax-seal { animation: none; }
+    .seal-gate.cracking .wax-half-left  { transform: translate(-12px, 8px) rotate(-3deg); }
+    .seal-gate.cracking .wax-half-right { transform: translate( 12px, 8px) rotate( 3deg); }
+    .seal-gate.cracking .seal-G   { transform: translate(-14px, 4px) rotate(-5deg); }
+    .seal-gate.cracking .seal-N   { transform: translate( 14px, 4px) rotate( 5deg); }
+    .seal-gate.cracking .seal-amp { opacity: 0; transform: scale(0.6); }
+
+    /* on correct password: G&N magnetic snap back together briefly */
+    .seal-gate.snap .seal-G { transform: translate(2px, 0) rotate(0deg); }
+    .seal-gate.snap .seal-N { transform: translate(-2px, 0) rotate(0deg); }
+    .seal-gate.snap .seal-amp { opacity: 1; transform: scale(1.08); }
+    .seal-gate.snap .wax-seal {
+      filter: drop-shadow(0 0 28px rgba(224, 192, 136, 0.6)) drop-shadow(0 8px 24px rgba(20, 53, 42, 0.4));
+    }
+    .seal-gate.unlocking .wax-seal {
+      transform: scale(1.6); opacity: 0;
+      transition: transform 1400ms var(--ease), opacity 1400ms ease;
+    }
+
+    .seal-input-wrap {
+      opacity: 0; pointer-events: none; position: relative; z-index: 2;
+      transition: opacity 400ms ease 400ms;
+      display: flex; flex-direction: column; align-items: center; gap: 16px;
+    }
+    .seal-gate.cracking .seal-input-wrap { opacity: 1; pointer-events: auto; }
+    .seal-gate.snap .seal-input-wrap,
+    .seal-gate.unlocking .seal-input-wrap { opacity: 0; pointer-events: none; transition-delay: 0ms; }
+
+    .seal-input {
+      width: 400px; max-width: 80vw; background: transparent;
+      border: none; border-bottom: 1px solid var(--champagne);
+      font-family: 'Cormorant Garamond', serif; font-size: 32px; letter-spacing: 0.08em;
+      color: var(--champagne-bright); text-align: center; padding: 8px 0;
+      outline: none; caret-color: var(--champagne-bright);
+    }
+    .seal-input::placeholder { color: rgba(224, 192, 136, 0.25); font-style: italic; }
+    .seal-input.shake { animation: shake 420ms ease; color: var(--champagne-dim); }
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-8px); }
+      40%, 80% { transform: translateX(8px); }
+    }
+    .seal-hint {
+      color: var(--sage); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+    }
+
+    .seal-gate-reset {
+      position: absolute; bottom: 16px; right: 24px; z-index: 3;
+      background: transparent; border: 1px solid var(--ash); color: var(--sage);
+      font-family: inherit; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+      padding: 6px 12px; border-radius: 2px; cursor: pointer; opacity: 0.6;
+    }
+    .seal-gate-reset:hover { color: var(--champagne); border-color: var(--champagne); opacity: 1; }
+
+    /* ───────────── protected content reveal ───────────── */
+    .protected {
+      max-height: 0; opacity: 0; overflow: hidden;
+      transition: max-height 0ms ease 600ms, opacity 800ms ease 600ms;
+    }
+    body.unlocked .protected {
+      max-height: none; opacity: 1; overflow: visible;
+      transition: opacity 800ms ease;
+    }
+
+    /* ───────────── photo placeholder ───────────── */
+    .ph-photo {
+      display: block; width: 100%; height: 100%;
+      background: radial-gradient(ellipse 60% 50% at center, var(--cream-deep) 0%, var(--cream-bright) 60%, var(--cream-deep) 100%);
+      position: relative; overflow: hidden;
+      border: 6px solid var(--cream-bright);
+      box-shadow: 0 6px 24px rgba(20, 53, 42, 0.18);
+    }
+    .ph-photo::before {
+      content: ""; position: absolute; inset: 0;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence baseFrequency='0.65' numOctaves='2'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.06 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+      opacity: 0.6; mix-blend-mode: multiply;
+    }
+    .ph-photo::after {
+      content: attr(data-label);
+      position: absolute; bottom: 16px; left: 0; right: 0; text-align: center;
+      font-family: 'Cormorant Garamond', serif; font-style: italic;
+      font-size: 13px; color: var(--ash); letter-spacing: 0.04em;
+    }
+
+    /* ───────────── timeline / memory ledger ───────────── */
+    .timeline-header {
+      text-align: center; padding: 120px 48px 64px;
+      max-width: 760px; margin: 0 auto;
+      position: relative;
+    }
+    .timeline-phase-filter {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 8px;
+      max-width: 920px; margin: 32px auto 0;
+    }
+    .phase-pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 6px 14px; border: 1px solid var(--paper-shadow); border-radius: 999px;
+      font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--ash); background: var(--cream-bright); cursor: pointer;
+      transition: all 240ms var(--ease);
+    }
+    .phase-pill:hover { color: var(--emerald-deep); border-color: var(--champagne); }
+    .phase-pill.active { background: var(--emerald); color: var(--cream); border-color: var(--emerald); }
+    .phase-pill .dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--champagne); }
+
+    .ledger-stack { max-width: 1100px; margin: 0 auto; padding: 0 48px; }
+
+    .ledger {
+      perspective: 1600px; margin-bottom: 64px; position: relative;
+    }
+    .ledger-spread {
+      display: grid; grid-template-columns: 1fr 1fr;
+      background: var(--cream-deep);
+      border: 1px solid var(--paper-shadow); border-radius: 4px;
+      box-shadow: 0 24px 48px rgba(20, 53, 42, 0.18), 0 4px 12px rgba(20, 53, 42, 0.08);
+      transform: rotateX(1.5deg); transform-origin: center bottom;
+      position: relative; overflow: hidden;
+    }
+    .ledger-spread::before {
+      content: ""; position: absolute; left: 50%; top: 0; bottom: 0; width: 3px;
+      transform: translateX(-50%);
+      background: linear-gradient(90deg, transparent 0%, rgba(20,53,42,0.10) 30%, rgba(20,53,42,0.22) 50%, rgba(20,53,42,0.10) 70%, transparent 100%);
+      pointer-events: none; z-index: 5;
+    }
+    .ledger-page { padding: 56px 48px; min-height: 600px; position: relative; }
+    .ledger-page.left  { background: var(--cream-2018); }
+    .ledger-page.right { background: var(--cream-bright); }
+    .ledger-corner {
+      position: absolute; width: 120px; height: 120px;
+      top: 12px; opacity: 0.5; pointer-events: none;
+    }
+    .ledger-page.left  .ledger-corner { left: 12px; }
+    .ledger-page.right .ledger-corner { right: 12px; transform: scaleX(-1); }
+
+    .ledger-phase {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--ash); position: relative; z-index: 2;
+    }
+    .ledger-phase .pill { display: inline-block; width: 22px; height: 3px; background: var(--champagne); }
+    .ledger-date {
+      font-family: 'Cormorant Garamond', serif; font-style: italic;
+      font-size: 44px; color: var(--emerald-deep); margin: 16px 0 8px;
+      position: relative; z-index: 2;
+    }
+    .ledger-divider { width: 40px; height: 1px; background: var(--champagne); margin: 16px 0 24px; }
+    .ledger-photo { width: 100%; aspect-ratio: 16 / 11; margin-bottom: 28px; position: relative; z-index: 2; }
+    .ledger-narrative p { font-size: 15.5px; line-height: 1.75; color: var(--ink); position: relative; z-index: 2; }
+    .ledger-narrative p + p { margin-top: 14px; }
+    .ledger-quote {
+      font-family: 'Cormorant Garamond', serif; font-style: italic;
+      font-size: 22px; color: var(--champagne-dim); margin-top: 28px;
+      padding-left: 16px; border-left: 1px solid var(--champagne);
+      position: relative; z-index: 2;
+    }
+
+    .ledger-evidence-title {
+      font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--ash); margin-bottom: 20px; position: relative; z-index: 2;
+    }
+    .ev-card {
+      background: var(--cream); border: 1px solid var(--paper-shadow); border-left-width: 3px;
+      border-radius: 3px; padding: 14px 16px; display: grid;
+      grid-template-columns: 24px 1fr auto; gap: 14px; align-items: center;
+      margin-bottom: 12px; position: relative;
+      transition: transform 200ms var(--ease), box-shadow 200ms var(--ease);
+    }
+    .ev-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(20, 53, 42, 0.08);
+    }
+    .ev-card.phase-origins      { border-left-color: var(--champagne-dim); }
+    .ev-card.phase-reconnection { border-left-color: #B98A3E; }
+    .ev-card.phase-courtship    { border-left-color: var(--champagne); }
+    .ev-card.phase-engagement   { border-left-color: var(--champagne-bright); }
+    .ev-card.phase-marriage     { border-left-color: var(--emerald-light); }
+    .ev-card.phase-tribunal     { border-left-color: var(--emerald-deep); }
+    .ev-icon { color: var(--ash); }
+    .ev-body .ev-title { font-size: 13.5px; font-weight: 500; color: var(--emerald-deep); }
+    .ev-body .ev-meta  { font-size: 11px; color: var(--ash); margin-top: 2px; }
+    .ev-meter { display: flex; gap: 3px; align-items: flex-end; }
+    .ev-meter span { display: block; width: 4px; background: var(--paper-shadow); border-radius: 1px; }
+    .ev-meter span:nth-child(1) { height: 6px; }
+    .ev-meter span:nth-child(2) { height: 9px; }
+    .ev-meter span:nth-child(3) { height: 12px; }
+    .ev-meter.bars-3 span { background: var(--champagne); }
+    .ev-meter.bars-2 span:nth-child(1),
+    .ev-meter.bars-2 span:nth-child(2) { background: var(--champagne); }
+    .ev-meter.bars-1 span:nth-child(1) { background: var(--champagne-dim); }
+    .ev-link { position: absolute; top: 8px; right: 8px; color: var(--champagne); opacity: 0.9; }
+
+    .ledger-canon { margin-top: 28px; font-size: 13px; color: var(--ink); position: relative; z-index: 2; }
+    .ledger-canon .label { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ash); display: block; margin-bottom: 8px; }
+    .canon-chip {
+      display: inline-block; margin-right: 12px; padding: 2px 0;
+      border-bottom: 1px solid var(--champagne); color: var(--emerald-deep); cursor: pointer;
+      position: relative;
+    }
+    .canon-chip::after {
+      content: attr(data-canon-text);
+      position: absolute; top: calc(100% + 8px); left: 50%; transform: translateX(-50%) translateY(8px);
+      width: 280px; padding: 16px;
+      background: var(--cream-bright); border: 1px solid var(--paper-shadow); border-radius: 4px;
+      font-family: 'Satoshi'; font-size: 12px; font-weight: 400; line-height: 1.6;
+      color: var(--ink); text-align: left;
+      box-shadow: 0 12px 32px rgba(20, 53, 42, 0.16);
+      opacity: 0; pointer-events: none;
+      transition: opacity 240ms ease, transform 240ms var(--ease);
+      z-index: 20; border-left: 3px solid var(--champagne);
+    }
+    .canon-chip:hover::after,
+    .canon-chip:focus::after {
+      opacity: 1; pointer-events: auto;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .ledger-footer {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 14px 48px; background: var(--cream-deep);
+      border-top: 1px solid var(--paper-shadow); font-size: 11px; color: var(--ash);
+      letter-spacing: 0.12em; text-transform: uppercase;
+    }
+    .ledger-footer .nav-btn {
+      background: transparent; border: 1px solid var(--paper-shadow); color: var(--champagne-dim);
+      padding: 6px 14px; border-radius: 2px; cursor: pointer; font: inherit; letter-spacing: 0.12em;
+      transition: all 200ms ease;
+    }
+    .ledger-footer .nav-btn:hover { color: var(--emerald-deep); border-color: var(--champagne); background: var(--cream-bright); }
+    .ledger-footer .nav-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+
+    /* ───────────── appeal section ───────────── */
+    .appeal-header { text-align: center; padding: 120px 48px 48px; max-width: 760px; margin: 0 auto; }
+    .appeal-layout {
+      max-width: 1180px; margin: 0 auto; padding: 0 48px;
+      display: grid; grid-template-columns: 220px 1fr; gap: 56px; align-items: start;
+    }
+    .appeal-nav {
+      position: sticky; top: 24px; align-self: start;
+      padding: 24px 0;
+    }
+    .appeal-nav-eyebrow { font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--ash); margin-bottom: 16px; }
+    .appeal-nav-list { list-style: none; }
+    .appeal-nav-list li { margin-bottom: 6px; }
+    .appeal-nav-list a {
+      display: block; padding: 6px 12px; border-left: 2px solid transparent;
+      font-size: 12.5px; color: var(--ink); opacity: 0.7;
+      text-decoration: none; transition: all 200ms ease; font-family: 'Cormorant Garamond';
+      letter-spacing: 0.02em;
+    }
+    .appeal-nav-list a:hover { color: var(--emerald-deep); opacity: 1; border-left-color: var(--champagne); }
+    .appeal-nav-list a.active { color: var(--emerald-deep); opacity: 1; border-left-color: var(--champagne); font-weight: 500; }
+
+    .verso-stack { display: flex; flex-direction: column; gap: 80px; }
+
+    .verso-card {
+      perspective: 1600px; min-height: 600px; position: relative;
+    }
+    .verso-inner {
+      position: relative; width: 100%; height: 600px;
+      transform-style: preserve-3d;
+      transition: transform 900ms var(--ease);
+    }
+    .verso-card.flipped .verso-inner { transform: rotateY(180deg); }
+    .verso-face {
+      position: absolute; inset: 0; backface-visibility: hidden;
+      background: var(--cream-bright); border: 1px solid var(--paper-shadow);
+      border-radius: 4px; padding: 56px 64px;
+      box-shadow: 0 4px 24px rgba(20, 53, 42, 0.10);
+      display: flex; flex-direction: column;
+      overflow: hidden;
+    }
+    .verso-face .corner-floral { width: 140px; height: 140px; top: 0; left: 0; opacity: 0.45; }
+    .verso-face .corner-floral.br { left: auto; right: 0; top: auto; bottom: 0; transform: scale(-1, -1); }
+    .verso-back { transform: rotateY(180deg); }
+    .verso-ground {
+      font-family: 'Cormorant Garamond', serif; font-style: italic;
+      font-size: 13px; color: var(--champagne-dim); letter-spacing: 0.04em; position: relative; z-index: 2;
+    }
+    .verso-heading {
+      font-family: 'Cormorant Garamond', serif; font-size: 30px; font-weight: 400;
+      color: var(--emerald-deep); line-height: 1.25; margin-top: 6px; position: relative; z-index: 2;
+    }
+    .verso-body { font-size: 15px; line-height: 1.75; color: var(--ink); margin-top: 18px; position: relative; z-index: 2; flex: 1; overflow-y: auto; }
+    .verso-body p + p { margin-top: 12px; }
+    .verso-body::-webkit-scrollbar { width: 6px; }
+    .verso-body::-webkit-scrollbar-thumb { background: var(--paper-shadow); border-radius: 3px; }
+
+    .tag {
+      display: inline-block; font-size: 9.5px; letter-spacing: 0.18em; text-transform: uppercase;
+      padding: 1px 6px; margin: 0 2px; vertical-align: middle; font-weight: 500; border-radius: 2px;
+    }
+    .tag-fact      { color: var(--champagne-dim); background: var(--champagne-soft); }
+    .tag-arg       { color: var(--emerald-deep); background: rgba(31, 61, 46, 0.10); }
+    .tag-infer     { color: #B07A2A; background: rgba(176, 122, 42, 0.10); }
+    .tag-new       { color: var(--emerald-mid); background: rgba(45, 85, 63, 0.14); }
+    .tag-admission { color: var(--champagne-dim); background: var(--champagne-soft); border: 1px solid var(--champagne); }
+
+    /* Verso tab with ribbon trail on hover */
+    .verso-tab {
+      position: absolute; bottom: 28px; right: -8px; z-index: 3;
+      background: var(--emerald); color: var(--cream-bright);
+      font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 500;
+      padding: 9px 20px; border: none; cursor: pointer;
+      transform: rotate(-2deg); border-radius: 2px;
+      transition: transform 280ms var(--ease), background 240ms ease;
+    }
+    .verso-tab::before {
+      content: ""; position: absolute; top: 50%; right: 100%; transform: translateY(-50%);
+      width: 0; height: 3px; background: var(--champagne); opacity: 0;
+      transition: width 280ms var(--ease), opacity 200ms ease;
+    }
+    .verso-tab:hover { transform: translateX(14px) rotate(-2deg); background: var(--emerald-deep); }
+    .verso-tab:hover::before { width: 32px; opacity: 1; }
+    .verso-tab.left { right: auto; left: -8px; transform: rotate(2deg); }
+    .verso-tab.left::before { right: auto; left: 100%; }
+    .verso-tab.left:hover { transform: translateX(-14px) rotate(2deg); }
+
+    .verso-evidence { display: flex; flex-direction: column; gap: 10px; margin-top: 18px; position: relative; z-index: 2; }
+
+    /* ───────────── folded letter diptych with inline analysis ───────────── */
+    .diptych-wrap {
+      max-width: 1100px; margin: 96px auto 0; padding: 0 48px;
+    }
+    .diptych {
+      position: relative; aspect-ratio: 16 / 9; cursor: pointer;
+      transition: transform 600ms var(--ease);
+    }
+    .diptych-page {
+      position: absolute; top: 0; bottom: 0; width: calc(50% - 28px); overflow: hidden;
+      background: var(--cream-bright);
+      border: 1px solid var(--paper-shadow);
+      box-shadow: 0 8px 32px rgba(20, 53, 42, 0.18);
+      transition: transform 500ms var(--ease);
+    }
+    .diptych-page.left  { left: 0; }
+    .diptych-page.right { right: 0; }
+    .diptych:hover .diptych-page.left  { transform: translateX(-6px); }
+    .diptych:hover .diptych-page.right { transform: translateX( 6px); }
+    .diptych.opened .diptych-page.left  { transform: translateX(-32px); }
+    .diptych.opened .diptych-page.right { transform: translateX( 32px); }
+
+    .diptych-ribbon {
+      position: absolute; top: -12px; bottom: -12px; left: 50%; transform: translateX(-50%);
+      width: 56px; z-index: 2; pointer-events: none;
+      transition: opacity 500ms ease;
+    }
+    .diptych.opened .diptych-ribbon { opacity: 0.5; }
+
+    .diptych-seal {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      z-index: 3; width: 100px; height: 100px;
+      filter: drop-shadow(0 4px 12px rgba(20, 53, 42, 0.4));
+      cursor: pointer; pointer-events: auto;
+      transition: transform 600ms var(--ease);
+    }
+    .diptych-seal:hover { transform: translate(-50%, -50%) scale(1.06); }
+    .diptych-seal .crack {
+      stroke: #0E2A1F; stroke-width: 2; fill: none;
+      stroke-dasharray: 200; stroke-dashoffset: 200;
+      transition: stroke-dashoffset 700ms var(--ease);
+    }
+    .diptych-seal .ds-half-left,
+    .diptych-seal .ds-half-right {
+      transition: transform 700ms var(--ease);
+    }
+    .diptych.opened .diptych-seal .crack { stroke-dashoffset: 0; }
+    .diptych.opened .diptych-seal .ds-half-left  { transform: translate(-6px, 4px) rotate(-6deg); }
+    .diptych.opened .diptych-seal .ds-half-right { transform: translate( 6px, 4px) rotate( 6deg); }
+    .diptych-seal .ds-G,
+    .diptych-seal .ds-N { transition: transform 700ms var(--ease), opacity 500ms ease; }
+    .diptych.opened .diptych-seal .ds-G { transform: translate(-4px, 0) rotate(-3deg); }
+    .diptych.opened .diptych-seal .ds-N { transform: translate( 4px, 0) rotate( 3deg); }
+    .diptych.opened .diptych-seal .ds-amp { opacity: 0; }
+
+    .diptych-label {
+      padding: 40px 32px 28px;
+      font-family: 'Cormorant Garamond', serif; color: var(--emerald-deep);
+      height: 100%; display: flex; flex-direction: column; justify-content: center;
+    }
+    .diptych-label .eyebrow { display: block; margin-bottom: 12px; color: var(--ash); }
+    .diptych-label .quote { font-style: italic; font-size: 22px; line-height: 1.35; color: var(--ink); }
+    .diptych-page.right .diptych-label { padding-left: 44px; }
+    .diptych-page.left  .diptych-label { padding-right: 44px; text-align: right; }
+    .diptych-page.left  .diptych-label .eyebrow { text-align: right; }
+
+    /* inline analysis panel (replaces alert) */
+    .diptych-analysis {
+      max-height: 0; opacity: 0; overflow: hidden;
+      transition: max-height 700ms var(--ease), opacity 500ms ease, margin-top 700ms var(--ease);
+      background: var(--cream-bright); border: 1px solid var(--paper-shadow); border-radius: 4px;
+      box-shadow: 0 12px 32px rgba(20, 53, 42, 0.10);
+      padding: 0 56px;
+      position: relative;
+    }
+    .diptych.opened + .diptych-analysis {
+      max-height: 800px; opacity: 1; padding: 48px 56px; margin-top: 24px;
+    }
+    .diptych-analysis .scripture { display: block; margin-bottom: 8px; }
+    .diptych-analysis h4 {
+      font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 400;
+      color: var(--emerald-deep); margin-bottom: 16px; line-height: 1.2;
+    }
+    .diptych-analysis p { font-size: 15px; line-height: 1.75; color: var(--ink); margin-bottom: 12px; }
+    .diptych-analysis .canon-line {
+      margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--paper-shadow);
+      font-size: 12.5px; color: var(--champagne-dim); font-style: italic;
+    }
+
+    /* prayer / closing */
+    .prayer {
+      max-width: 760px; margin: 120px auto 0; padding: 80px 48px;
+      background: var(--emerald); color: var(--cream);
+      border-radius: 4px; position: relative; overflow: hidden;
+      text-align: center;
+    }
+    .prayer .corner-floral { opacity: 0.4; width: 200px; height: 200px; }
+    .prayer .scripture { color: var(--champagne-bright); display: block; margin-bottom: 12px; }
+    .prayer h3 {
+      font-family: 'Cormorant Garamond', serif; font-size: 38px; font-weight: 400;
+      color: var(--cream); margin-bottom: 20px; position: relative; z-index: 2;
+    }
+    .prayer p { font-size: 16px; color: var(--sage); line-height: 1.8; position: relative; z-index: 2; }
+
+    /* ───────────── gold ribbon nav ───────────── */
+    .gold-ribbon {
+      position: fixed; top: 0; right: 0; bottom: 0; width: 24px; z-index: 50;
+      display: flex; align-items: center; justify-content: flex-end;
+      pointer-events: none;
+    }
+    .ribbon-line {
+      position: absolute; right: 11px; top: 0; bottom: 0; width: 2px; background: var(--champagne);
+      opacity: 0.65; transition: opacity 240ms ease;
+    }
+    .ribbon-panel {
+      position: absolute; right: 0; top: 0; bottom: 0; width: 72px;
+      background: rgba(245, 239, 224, 0.96); backdrop-filter: blur(8px);
+      border-left: 1px solid var(--paper-shadow);
+      transform: translateX(72px); transition: transform 300ms var(--ease);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 10px; pointer-events: auto; padding: 24px 0;
+    }
+    .gold-ribbon:hover { width: 72px; }
+    .gold-ribbon:hover .ribbon-panel { transform: translateX(0); }
+    .gold-ribbon:hover .ribbon-line { opacity: 0; }
+    .ribbon-trigger { position: absolute; top: 0; right: 0; bottom: 0; width: 40px; pointer-events: auto; }
+    .ribbon-dot {
+      width: 8px; height: 8px; border-radius: 50%; background: var(--champagne-dim);
+      cursor: pointer; transition: transform 200ms ease, box-shadow 200ms ease, background 200ms ease;
+      position: relative; flex-shrink: 0;
+    }
+    .ribbon-dot:hover { transform: scale(1.4); background: var(--champagne); }
+    .ribbon-dot.active {
+      background: var(--champagne-bright);
+      box-shadow: 0 0 0 6px var(--champagne-halo);
+    }
+    .ribbon-dot .ribbon-tip {
+      position: absolute; right: 24px; top: 50%; transform: translateY(-50%);
+      background: var(--emerald-deep); color: var(--cream); padding: 6px 12px;
+      font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+      white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity 200ms ease;
+      border-radius: 2px;
+    }
+    .ribbon-dot:hover .ribbon-tip { opacity: 1; }
+
+    /* ───────────── footer ───────────── */
+    .site-footer {
+      background: var(--emerald-deep); color: var(--sage);
+      padding: 80px 48px; text-align: center; font-size: 12px; letter-spacing: 0.08em;
+      position: relative; overflow: hidden; margin-top: 120px;
+    }
+    .site-footer .corner-floral { opacity: 0.35; width: 220px; height: 220px; }
+    .site-footer strong { color: var(--champagne); font-weight: 500; }
+    .site-footer .scripture { color: var(--champagne); display: block; margin-bottom: 12px; font-size: 16px; }
+
+    /* ───────────── reduced motion ───────────── */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+      .petal { display: none; }
+    }
+
+    /* ───────────── mobile ───────────── */
+    @media (max-width: 820px) {
+      body { padding-right: 16px; }
+      .page-section { padding: 64px 24px; }
+      .hero { padding: 80px 24px 100px; min-height: auto; }
+      .narrative { padding: 80px 24px; }
+      .narrative-inner { gap: 64px; }
+      .entries { padding: 80px 24px; }
+      .entries-inner { grid-template-columns: 1fr; }
+      .seal-gate { padding: 80px 24px; min-height: 560px; }
+      .corner-floral { width: 140px !important; height: 140px !important; }
+      .ledger-stack { padding: 0 24px; }
+      .ledger-spread { grid-template-columns: 1fr; transform: none; }
+      .ledger-spread::before { display: none; }
+      .ledger-page { padding: 32px 24px; min-height: auto; }
+      .ledger-footer { padding: 12px 24px; }
+      .appeal-layout { grid-template-columns: 1fr; gap: 32px; padding: 0 24px; }
+      .appeal-nav { position: static; }
+      .verso-card, .verso-inner { height: auto; min-height: 640px; }
+      .verso-face { padding: 32px 28px; position: relative; }
+      .verso-back { transform: rotateY(180deg); }
+      .diptych-wrap { padding: 0 24px; }
+      .diptych { aspect-ratio: 4 / 5; }
+      .diptych-label .quote { font-size: 16px; }
+      .diptych-page { width: calc(50% - 16px); }
+      .diptych-ribbon { width: 36px; }
+      .diptych-analysis { padding: 0 28px !important; }
+      .diptych.opened + .diptych-analysis { padding: 32px 28px !important; }
+      .gold-ribbon { width: 16px; }
+      .ribbon-line { right: 7px; }
+      .canon-chip::after { width: 240px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═════════════════════════ SVG SYMBOL LIBRARY ═════════════════════════ -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="floralCorner" viewBox="0 0 280 280">
+        <g fill="none" stroke="#C9A876" stroke-width="0.9" stroke-linecap="round">
+          <path d="M 14 14 Q 80 36 130 80 Q 180 124 220 178" />
+          <path d="M 36 10 Q 60 50 84 90" />
+          <path d="M 10 50 Q 44 70 78 110" />
+          <path d="M 130 22 Q 156 50 186 78" />
+        </g>
+        <g fill="#8A7044" opacity="0.72">
+          <ellipse cx="50" cy="36" rx="11" ry="3" transform="rotate(45 50 36)" />
+          <ellipse cx="86" cy="64" rx="13" ry="3.4" transform="rotate(48 86 64)" />
+          <ellipse cx="124" cy="92" rx="12" ry="3" transform="rotate(46 124 92)" />
+          <ellipse cx="156" cy="120" rx="13" ry="3.4" transform="rotate(45 156 120)" />
+          <ellipse cx="190" cy="150" rx="11" ry="2.8" transform="rotate(46 190 150)" />
+        </g>
+        <g fill="#C9A876">
+          <ellipse cx="40" cy="50" rx="10" ry="2.8" transform="rotate(60 40 50)" />
+          <ellipse cx="74" cy="86" rx="12" ry="3" transform="rotate(58 74 86)" />
+          <ellipse cx="108" cy="118" rx="11" ry="3" transform="rotate(56 108 118)" />
+          <ellipse cx="148" cy="148" rx="13" ry="3.3" transform="rotate(56 148 148)" />
+          <ellipse cx="184" cy="176" rx="10" ry="2.8" transform="rotate(56 184 176)" />
+          <ellipse cx="148" cy="44" rx="9" ry="2.6" transform="rotate(40 148 44)" />
+          <ellipse cx="172" cy="68" rx="10" ry="2.6" transform="rotate(46 172 68)" />
+        </g>
+        <g transform="translate(60 46)">
+          <g fill="#FBF6E8" stroke="#D8D0BC" stroke-width="0.45">
+            <ellipse cx="0" cy="-13" rx="9" ry="14" />
+            <ellipse cx="0" cy="-13" rx="9" ry="14" transform="rotate(72)" />
+            <ellipse cx="0" cy="-13" rx="9" ry="14" transform="rotate(144)" />
+            <ellipse cx="0" cy="-13" rx="9" ry="14" transform="rotate(216)" />
+            <ellipse cx="0" cy="-13" rx="9" ry="14" transform="rotate(288)" />
+          </g>
+          <circle cx="0" cy="0" r="4.5" fill="#E0C088" />
+          <circle cx="0" cy="0" r="2" fill="#8A7044" />
+        </g>
+        <g transform="translate(140 110)">
+          <g fill="#FBF6E8" stroke="#D8D0BC" stroke-width="0.4">
+            <ellipse cx="0" cy="-9" rx="6" ry="10" />
+            <ellipse cx="0" cy="-9" rx="6" ry="10" transform="rotate(72)" />
+            <ellipse cx="0" cy="-9" rx="6" ry="10" transform="rotate(144)" />
+            <ellipse cx="0" cy="-9" rx="6" ry="10" transform="rotate(216)" />
+            <ellipse cx="0" cy="-9" rx="6" ry="10" transform="rotate(288)" />
+          </g>
+          <circle cx="0" cy="0" r="3" fill="#E0C088" />
+        </g>
+        <g transform="translate(200 170)">
+          <g fill="#FBF6E8" stroke="#D8D0BC" stroke-width="0.35">
+            <ellipse cx="0" cy="-7" rx="4.5" ry="8" />
+            <ellipse cx="0" cy="-7" rx="4.5" ry="8" transform="rotate(72)" />
+            <ellipse cx="0" cy="-7" rx="4.5" ry="8" transform="rotate(144)" />
+            <ellipse cx="0" cy="-7" rx="4.5" ry="8" transform="rotate(216)" />
+            <ellipse cx="0" cy="-7" rx="4.5" ry="8" transform="rotate(288)" />
+          </g>
+          <circle cx="0" cy="0" r="2.4" fill="#E0C088" />
+        </g>
+        <g fill="#E0C088" opacity="0.85">
+          <path d="M 110 18 l 0 -6 l 1.2 4.8 l 4.8 1.2 l -4.8 1.2 l -1.2 4.8 l -1.2 -4.8 l -4.8 -1.2 l 4.8 -1.2 z" />
+          <path d="M 226 86 l 0 -4 l 0.8 3.2 l 3.2 0.8 l -3.2 0.8 l -0.8 3.2 l -0.8 -3.2 l -3.2 -0.8 l 3.2 -0.8 z" />
+          <path d="M 174 200 l 0 -5 l 1 4 l 4 1 l -4 1 l -1 4 l -1 -4 l -4 -1 l 4 -1 z" />
+        </g>
+      </symbol>
+
+      <symbol id="filigreeGlyph" viewBox="0 0 24 24">
+        <g fill="currentColor">
+          <path d="M 12 4 C 12 8, 10 10, 6 10 C 10 10, 12 12, 12 16 C 12 12, 14 10, 18 10 C 14 10, 12 8, 12 4 Z" />
+          <circle cx="12" cy="20" r="1.2" />
+        </g>
+      </symbol>
+
+      <symbol id="chainLink" viewBox="0 0 24 24">
+        <g fill="none" stroke="currentColor" stroke-width="1.6">
+          <path d="M10 14a5 5 0 0 1 0-7l3-3a5 5 0 0 1 7 7l-1.5 1.5"/>
+          <path d="M14 10a5 5 0 0 1 0 7l-3 3a5 5 0 0 1-7-7l1.5-1.5"/>
+        </g>
+      </symbol>
+
+      <symbol id="petal" viewBox="0 0 14 14">
+        <ellipse cx="7" cy="7" rx="3" ry="6" fill="#FBF6E8" stroke="#D8D0BC" stroke-width="0.3" />
+      </symbol>
+
+      <symbol id="ribbonCorner" viewBox="0 0 36 84">
+        <path d="M 0 0 L 36 0 L 36 70 L 18 60 L 0 70 Z" fill="#C9A876" />
+        <path d="M 18 60 L 18 84" stroke="#8A7044" stroke-width="1" fill="none" />
+      </symbol>
+
+      <linearGradient id="globalMonoGold" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%"   stop-color="#E5C262" />
+        <stop offset="50%"  stop-color="#C9A876" />
+        <stop offset="100%" stop-color="#8A7044" />
+      </linearGradient>
+    </defs>
+  </svg>
+
+  <!-- ═════════════════════════ GOLD RIBBON NAV ═════════════════════════ -->
+  <aside class="gold-ribbon" aria-label="Chronology navigator">
+    <div class="ribbon-trigger"></div>
+    <div class="ribbon-line"></div>
+    <nav class="ribbon-panel" id="ribbon"></nav>
+  </aside>
+
+  <!-- ═════════════════════════ FRONT PAGE — HERO ═════════════════════════ -->
+  <header class="hero" id="hero">
+    <div class="paper-grain"></div>
+    <svg class="corner-floral tl" aria-hidden="true"><use href="#floralCorner"/></svg>
+    <svg class="corner-floral tr" aria-hidden="true"><use href="#floralCorner"/></svg>
+    <svg class="corner-floral bl" aria-hidden="true"><use href="#floralCorner"/></svg>
+    <svg class="corner-floral br" aria-hidden="true"><use href="#floralCorner"/></svg>
+
+    <span class="proof-tag">v2 · interactive build</span>
+
+    <div class="hero-inner">
+      <p class="hero-scripture">1 Corinthians 13:13.</p>
+      <h1 class="hero-headline">Gracious <span class="amp">&amp;</span> Nicole</h1>
+      <div class="hero-divider"></div>
+      <p class="hero-subline">28 · August · 2021</p>
+      <p class="hero-date">Holy Family Co-Cathedral · Kuwait</p>
+    </div>
+
+    <div class="hero-scroll"></div>
+  </header>
+
+  <!-- ═════════════════════════ SCROLL NARRATIVE ═════════════════════════ -->
+  <section class="narrative" id="narrative">
+    <div class="narrative-inner">
+
+      <p class="fragment">
+        They <span class="accent">first met</span> in 2009,
+        at Sir Markos' tuition classes.
+        <span class="fragment-meta">Origins</span>
+      </p>
+
+      <p class="fragment">
+        They <span class="accent">found each other again</span> in faith,
+        through the CYouQ8 youth group.
+        <span class="fragment-date">2017</span>
+      </p>
+
+      <p class="fragment">
+        Three years of courtship.<br>
+        One question. One <span class="accent">yes</span>.
+      </p>
+
+      <p class="fragment">
+        On 28 August 2021, beneath the dome of <span class="accent">Holy Family Co-Cathedral</span>,
+        they spoke their vows before God and seventy-eight witnesses.
+      </p>
+
+      <p class="fragment pull">
+        "The nuptials and the wedding celebrations went off well."
+        <span class="fragment-meta">— First Instance Sentence, §1</span>
+      </p>
+
+    </div>
+
+    <div class="filigree" style="margin-top: 96px;">
+      <span class="filigree-line"></span>
+      <svg width="20" height="20" class="filigree-glyph"><use href="#filigreeGlyph"/></svg>
+      <span class="filigree-line"></span>
+    </div>
+  </section>
+
+  <!-- ═════════════════════════ ENTRY GATES ═════════════════════════ -->
+  <section class="entries" id="entries">
+    <div class="entries-inner">
+      <div class="entries-header">
+        <span class="scripture">— and the greatest of these is love.</span>
+        <h2 class="section-title">Three paths through the record</h2>
+        <p class="section-note" style="margin: 16px auto 0;">A public memorial, an archive of evidence, an appellate response. The two restricted sections share one wax seal.</p>
+      </div>
+
+      <article class="entry-card" data-target="narrative">
+        <svg class="ribbon-corner" aria-hidden="true"><use href="#ribbonCorner"/></svg>
+        <div class="entry-card-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 4h16v16H4z"/><path d="M4 8h16M8 4v16"/></svg>
+        </div>
+        <h3 class="entry-card-title">Our Story</h3>
+        <p class="entry-card-desc">A poetic, public memorial of the marriage — the days, the people, the place.</p>
+        <p class="entry-card-lock public">Public · open</p>
+      </article>
+
+      <article class="entry-card" data-target="seal">
+        <svg class="ribbon-corner" aria-hidden="true"><use href="#ribbonCorner"/></svg>
+        <div class="entry-card-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        </div>
+        <h3 class="entry-card-title">Memory Ledger</h3>
+        <p class="entry-card-desc">The full chronology of the relationship — photographs, documents, voice calls, witness references.</p>
+        <p class="entry-card-lock">Sealed · requires password</p>
+      </article>
+
+      <article class="entry-card" data-target="seal">
+        <svg class="ribbon-corner" aria-hidden="true"><use href="#ribbonCorner"/></svg>
+        <div class="entry-card-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M6 3h12l2 4-8 14L4 7z"/><path d="M8 7h8"/></svg>
+        </div>
+        <h3 class="entry-card-title">Appellate Observations</h3>
+        <p class="entry-card-desc">The Respondent's consolidated submission to the Second Instance Patriarchal Tribunal — ten grounds, with linked evidence.</p>
+        <p class="entry-card-lock">Sealed · requires password</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ═════════════════════════ WAX SEAL GATE ═════════════════════════ -->
+  <section class="seal-gate" id="seal" tabindex="0">
+    <div class="paper-grain"></div>
+    <svg class="corner-floral tl" aria-hidden="true"><use href="#floralCorner"/></svg>
+    <svg class="corner-floral tr" aria-hidden="true"><use href="#floralCorner"/></svg>
+    <svg class="corner-floral bl" aria-hidden="true"><use href="#floralCorner"/></svg>
+    <svg class="corner-floral br" aria-hidden="true"><use href="#floralCorner"/></svg>
+
+    <span class="seal-gate-eyebrow">The seal</span>
+    <h2 class="seal-gate-title">Break the wax to enter the archive.</h2>
+    <p class="seal-gate-script">a private record</p>
+
+    <svg class="wax-seal" id="waxSeal" viewBox="0 0 260 260" aria-label="Press to break the seal">
+      <defs>
+        <radialGradient id="emeraldWax" cx="38%" cy="32%" r="78%">
+          <stop offset="0%"   stop-color="#3F6B52" />
+          <stop offset="55%"  stop-color="#1F3D2E" />
+          <stop offset="100%" stop-color="#0E2A1F" />
+        </radialGradient>
+        <filter id="waxNoise"><feTurbulence baseFrequency="2.4" numOctaves="2"/><feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.12 0"/></filter>
+      </defs>
+
+      <g class="wax-half-left">
+        <path d="M 130 18 C 78 22, 32 62, 26 124 C 24 166, 48 206, 96 230 C 110 234, 124 234, 130 232 L 130 18 Z" fill="url(#emeraldWax)" />
+        <path d="M 130 18 C 78 22, 32 62, 26 124 C 24 166, 48 206, 96 230 C 110 234, 124 234, 130 232 L 130 18 Z" fill="black" filter="url(#waxNoise)" opacity="0.42" />
+      </g>
+      <g class="wax-half-right">
+        <path d="M 130 18 C 182 22, 228 62, 234 124 C 236 166, 212 206, 164 230 C 150 234, 136 234, 130 232 L 130 18 Z" fill="url(#emeraldWax)" />
+        <path d="M 130 18 C 182 22, 228 62, 234 124 C 236 166, 212 206, 164 230 C 150 234, 136 234, 130 232 L 130 18 Z" fill="black" filter="url(#waxNoise)" opacity="0.42" />
+      </g>
+
+      <!-- G &amp; N split apart on crack -->
+      <text class="seal-G"   x="82"  y="162" text-anchor="middle" font-family="Cormorant Garamond, serif" font-style="italic" font-weight="600" font-size="96" fill="url(#globalMonoGold)">G</text>
+      <text class="seal-amp" x="130" y="160" text-anchor="middle" font-family="Cormorant Garamond, serif" font-style="italic" font-weight="500" font-size="60" fill="url(#globalMonoGold)">&amp;</text>
+      <text class="seal-N"   x="178" y="162" text-anchor="middle" font-family="Cormorant Garamond, serif" font-style="italic" font-weight="600" font-size="96" fill="url(#globalMonoGold)">N</text>
+
+      <path class="crack" d="M 130 18 L 124 62 L 136 108 L 122 150 L 134 196 L 128 232" />
+    </svg>
+
+    <div class="seal-input-wrap">
+      <input type="password" class="seal-input" id="sealInput" placeholder="password" autocomplete="off" aria-label="Enter section password" />
+      <div class="seal-hint" id="sealHint">Type · then press Enter</div>
+    </div>
+
+    <button class="seal-gate-reset" id="sealReset">reset</button>
+  </section>
+
+  <!-- ═════════════════════════ PROTECTED — TIMELINE + APPEAL ═════════════════════════ -->
+  <main class="protected" id="protected">
+
+    <!-- ─────── TIMELINE ─────── -->
+    <section id="timeline">
+      <div class="timeline-header">
+        <span class="scripture">— Faith.</span>
+        <h2 class="section-title">Memory Ledger</h2>
+        <p class="section-script">the chronology</p>
+        <p class="section-note" style="margin: 12px auto 0;">Each spread is one moment. Left page is narrative; right page is evidence. Use the prev / next buttons or the Gold Ribbon on the right edge to navigate.</p>
+
+        <div class="timeline-phase-filter">
+          <button class="phase-pill active" data-phase="all"><span class="dot"></span>All</button>
+          <button class="phase-pill" data-phase="origins"><span class="dot"></span>Origins</button>
+          <button class="phase-pill" data-phase="reconnection"><span class="dot"></span>Reconnection</button>
+          <button class="phase-pill" data-phase="courtship"><span class="dot"></span>Courtship</button>
+          <button class="phase-pill" data-phase="engagement"><span class="dot"></span>Engagement</button>
+          <button class="phase-pill" data-phase="marriage"><span class="dot"></span>Marriage</button>
+          <button class="phase-pill" data-phase="tribunal"><span class="dot"></span>Tribunal</button>
+        </div>
+      </div>
+
+      <div class="ledger-stack" id="ledgerStack">
+
+        <!-- SPREAD 01 · COURTSHIP · FIRST DATE -->
+        <article class="ledger" data-phase="courtship" id="ledger-01">
+          <div class="ledger-spread">
+            <section class="ledger-page left">
+              <svg class="ledger-corner" aria-hidden="true"><use href="#floralCorner"/></svg>
+              <div class="ledger-phase"><span class="pill"></span>Courtship · First Date</div>
+              <h3 class="ledger-date">28 November 2018</h3>
+              <div class="ledger-divider"></div>
+              <div class="ledger-photo"><div class="ph-photo" data-label="[avenues mall · first date]"></div></div>
+              <div class="ledger-narrative">
+                <p>A Turkish restaurant in the Avenues Mall, on a Wednesday evening in late November. The relationship that had grown out of the CYouQ8 youth group, the desert chalet conversation, and a year of friendship became official at this table.</p>
+                <p>Three years of courtship would follow — across months of conversation, Sunday lunches, and the slow, sincere building of trust between two people who had first met in Sir Markos' tuition classes nearly a decade earlier.</p>
+              </div>
+              <blockquote class="ledger-quote">"They found each other again in faith, in 2017."</blockquote>
+            </section>
+
+            <section class="ledger-page right">
+              <svg class="ledger-corner" aria-hidden="true"><use href="#floralCorner"/></svg>
+              <div class="ledger-evidence-title">Evidence &amp; References</div>
+
+              <div class="ev-card phase-courtship">
+                <span class="ev-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="1"/><circle cx="12" cy="12" r="3"/></svg></span>
+                <div class="ev-body"><div class="ev-title">Avenues Mall photograph</div><div class="ev-meta">photograph · Nov 2018 · personal archive</div></div>
+                <span class="ev-meter bars-3"><span></span><span></span><span></span></span>
+                <a class="ev-link" href="#ground-4" title="Linked to Appeal Ground IV"><svg width="14" height="14"><use href="#chainLink"/></svg></a>
+              </div>
+
+              <div class="ev-card phase-courtship">
+                <span class="ev-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 5h16v12H8l-4 4z"/></svg></span>
+                <div class="ev-body"><div class="ev-title">First WhatsApp chain</div><div class="ev-meta">chat · 28–30 Nov 2018 · screenshots</div></div>
+                <span class="ev-meter bars-2"><span></span><span></span><span></span></span>
+                <a class="ev-link" href="#ground-4" title="Linked to Appeal Ground IV"><svg width="14" height="14"><use href="#chainLink"/></svg></a>
+              </div>
+
+              <div class="ev-card phase-courtship">
+                <span class="ev-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 3h9l5 5v13H6z"/><path d="M15 3v5h5"/></svg></span>
+                <div class="ev-body"><div class="ev-title">Restaurant receipt</div><div class="ev-meta">scanned · Nov 2018</div></div>
+                <span class="ev-meter bars-3"><span></span><span></span><span></span></span>
+              </div>
+
+              <div class="ledger-canon">
+                <span class="label">Canon &amp; sentence references</span>
+                <span class="canon-chip" tabindex="0" data-canon-text="Can. 1095 §3 — Incapable of contracting marriage who, because of causes of a psychological nature, are unable to assume the essential obligations. Plain: pre-relationship capacity to relate bears on antecedence.">Can. 1095 §3</span>
+                <span class="canon-chip" tabindex="0" data-canon-text="Sentence §21 — Respondent's external-cause admission. The marriage failed because of undue external influence and quick judgement.">Sentence §21</span>
+              </div>
+            </section>
+          </div>
+          <div class="ledger-footer">
+            <span class="page-marker">04 / 10</span>
+            <div>
+              <button class="nav-btn" data-nav="prev">← previous</button>
+              <button class="nav-btn" data-nav="next">next →</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- SPREAD 02 · ENGAGEMENT -->
+        <article class="ledger" data-phase="engagement" id="ledger-02">
+          <div class="ledger-spread">
+            <section class="ledger-page left" style="background: var(--cream-2021);">
+              <svg class="ledger-corner" aria-hidden="true"><use href="#floralCorner"/></svg>
+              <div class="ledger-phase"><span class="pill"></span>Engagement · The Promise</div>
+              <h3 class="ledger-date">March 2021</h3>
+              <div class="ledger-divider"></div>
+              <div class="ledger-photo"><div class="ph-photo" data-label="[engagement · ring exchange]"></div></div>
+              <div class="ledger-narrative">
+                <p>The official church engagement ceremony — ring exchange, cake cutting, and a prayer service led by Rev. Fr. Anthony. Both families were present and integrated into the day.</p>
+                <p>Nicole later described the moment as "genuinely happy and excited." Twenty-five photographs were preserved from this day; they form the central exhibit of the appellate filing.</p>
+              </div>
+              <blockquote class="ledger-quote">"Genuinely happy and excited." — Petitioner's recollection</blockquote>
+            </section>
+
+            <section class="ledger-page right">
+              <svg class="ledger-corner" aria-hidden="true"><use href="#floralCorner"/></svg>
+              <div class="ledger-evidence-title">Evidence &amp; References</div>
+
+              <div class="ev-card phase-engagement">
+                <span class="ev-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="1"/><circle cx="12" cy="12" r="3"/></svg></span>
+                <div class="ev-body"><div class="ev-title">25 engagement photographs</div><div class="ev-meta">filed with 3 March 2026 appeal · full annex</div></div>
+                <span class="ev-meter bars-3"><span></span><span></span><span></span></span>
+                <a class="ev-link" href="#ground-1" title="Linked to Ground I + IV"><svg width="14" height="14"><use href="#chainLink"/></svg></a>
+              </div>
+
+              <div class="ev-card phase-engagement">
+                <span class="ev-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zM8 12h8M12 8v8"/></svg></span>
+                <div class="ev-body"><div class="ev-title">Rev. Fr. Anthony officiated</div><div class="ev-meta">libellus page 2 · same priest as later sole Judge</div></div>
+                <span class="ev-meter bars-3"><span></span><span></span><span></span></span>
+                <a class="ev-link" href="#ground-1" title="Linked to Ground I — Can. 1448 §1"><svg width="14" height="14"><use href="#chainLink"/></svg></a>
+              </div>
+
+              <div class="ev-card phase-engagement">
+                <span class="ev-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="1"/></svg></span>
+                <div class="ev-body"><div class="ev-title">22 April 2021 — Reggai civil attempt</div><div class="ev-meta">IMG-20210422-WA0147 · joint conduct</div></div>
+                <span class="ev-meter bars-3"><span></span><span></span><span></span></span>
+              </div>
+
+              <div class="ledger-canon">
+                <span class="label">Canon &amp; sentence references</span>
+                <span class="canon-chip" tabindex="0" data-canon-text="Can. 1448 §1 — A judge is not to take part in a case in which he is involved by reason of consanguinity, affinity, guardianship, close acquaintance, great enmity, or financial benefit. Plain: a cleric who blessed the parties' engagement cannot later sit as their sole judge.">Can. 1448 §1</span>
+                <span class="canon-chip" tabindex="0" data-canon-text="Can. 1095 §3 — Plain: 25 engagement photographs of mutual affection and family integration are direct evidence of capacity at consent, contradicting any antecedent grave anomaly.">Can. 1095 §3</span>
+              </div>
+            </section>
+          </div>
+          <div class="ledger-footer">
+            <span class="page-marker">05 / 10</span>
+            <div>
+              <button class="nav-btn" data-nav="prev">← previous</button>
+              <button class="nav-btn" data-nav="next">next →</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- SPREAD 03 · WEDDING -->
+        <article class="ledger" data-phase="marriage" id="ledger-03">
+          <div class="ledger-spread">
+            <section class="ledger-page left" style="background: var(--cream-2021);">
+              <svg class="ledger-corner" aria-hidden="true"><use href="#floralCorner"/></svg>
+              <div class="ledger-phase"><span class="pill"></span>Marriage · The Covenant</div>
+              <h3 class="ledger-date">28 August 2021</h3>
+              <div class="ledger-divider"></div>
+              <div class="ledger-photo"><div class="ph-photo" data-label="[holy family co-cathedral · ceremony]"></div></div>
+              <div class="ledger-narrative">
+                <p>Solemn Roman Catholic ceremony at the Holy Family Co-Cathedral, Kuwait. Approximately seventy-eight guests. Celebrant: Rev. Fr. Francisco Pereira, SDB. A wedding website was prepared and launched — greywedsnicole.com — bearing the same brand the tribunal now reads.</p>
+                <p>The Marriage Banns had been published in the customary manner. No impediment was raised.</p>
+              </div>
+              <blockquote class="ledger-quote">"The nuptials and the wedding celebrations went off well." — First Instance Sentence, §1</blockquote>
+            </section>
+
+            <section class="ledger-page right">
+              <svg class="ledger-corner" aria-hidden="true"><use href="#floralCorner"/></svg>
+              <div class="ledger-evidence-title">Evidence &amp; References</div>
+
+              <div class="ev-card phase-marriage">
+                <span class="ev-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 3h9l5 5v13H6z"/><path d="M15 3v5h5"/></svg></span>
+                <div class="ev-body"><div class="ev-title">Marriage Certificate</div><div class="ev-meta">ecclesiastical record · 28 Aug 2021</div></div>
+                <span class="ev-meter bars-3"><span></span><span></span><span></span></span>
+                <a class="ev-link" href="#ground-4"><svg width="14" height="14"><use href="#chainLink"/></svg></a>
+              </div>
+
+              <div class="ev-card phase-marriage">
+                <span class="ev-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="1"/></svg></span>
+                <div class="ev-body"><div class="ev-title">Marriage Banns · no impediments</div><div class="ev-meta">published per custom · diocesan record</div></div>
+                <span class="ev-meter bars-3"><span></span><span></span><span></span></span>
+              </div>
+
+              <div class="ev-card phase-marriage">
+                <span class="ev-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="1"/><circle cx="12" cy="12" r="3"/></svg></span>
+                <div class="ev-body"><div class="ev-title">Ceremony photographs</div><div class="ev-meta">photograph set · 70+ images · 28 Aug 2021</div></div>
+                <span class="ev-meter bars-3"><span></span><span></span><span></span></span>
+                <a class="ev-link" href="#ground-4"><svg width="14" height="14"><use href="#chainLink"/></svg></a>
+              </div>
+
+              <div class="ev-card phase-marriage">
+                <span class="ev-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 3h9l5 5v13H6z"/><path d="M15 3v5h5"/></svg></span>
+                <div class="ev-body"><div class="ev-title">META Kuwait MOFA legalisation</div><div class="ev-meta">Civil 291053004868 · 2 Nov 2021</div></div>
+                <span class="ev-meter bars-3"><span></span><span></span><span></span></span>
+              </div>
+
+              <div class="ledger-canon">
+                <span class="label">Canon &amp; sentence references</span>
+                <span class="canon-chip" tabindex="0" data-canon-text="Can. 1060 — Marriage enjoys the favour of the law. In case of doubt, the validity of a marriage must be upheld until the contrary is proven. Plain: the burden lies on whoever asserts nullity.">Can. 1060</span>
+                <span class="canon-chip" tabindex="0" data-canon-text="Sentence §1 — Judicial admission. 'The nuptials and the wedding celebrations went off well.' Plain: this admission cannot coexist with a finding of radical antecedent incapacity at the moment it describes.">Sentence §1</span>
+              </div>
+            </section>
+          </div>
+          <div class="ledger-footer">
+            <span class="page-marker">06 / 10</span>
+            <div>
+              <button class="nav-btn" data-nav="prev">← previous</button>
+              <button class="nav-btn" data-nav="next">next →</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- SPREAD 04 · LAST DAY TOGETHER -->
+        <article class="ledger" data-phase="tribunal" id="ledger-04">
+          <div class="ledger-spread">
+            <section class="ledger-page left" style="background: var(--cream-2024);">
+              <svg class="ledger-corner" aria-hidden="true"><use href="#floralCorner"/></svg>
+              <div class="ledger-phase"><span class="pill"></span>Tribunal · The Record</div>
+              <h3 class="ledger-date">6 January 2024</h3>
+              <div class="ledger-divider"></div>
+              <div class="ledger-photo"><div class="ph-photo" data-label="[last day together]"></div></div>
+              <div class="ledger-narrative">
+                <p>An ordinary day out together — six days before the 13 January 2024 separation. Not a birthday, not a planned event; simply the parties spending the day in each other's company.</p>
+                <p>A couple still capable of sharing a day together one week before separation cannot have been burdened with permanent antecedent incapacity at consent two and a half years prior.</p>
+              </div>
+              <blockquote class="ledger-quote">"For the complete authenticated chronological record from this point, the Tribunal is directed here." — Appeal §21</blockquote>
+            </section>
+
+            <section class="ledger-page right">
+              <svg class="ledger-corner" aria-hidden="true"><use href="#floralCorner"/></svg>
+              <div class="ledger-evidence-title">Evidence &amp; References</div>
+
+              <div class="ev-card phase-tribunal">
+                <span class="ev-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+                <div class="ev-body"><div class="ev-title">Last day together · 6 Jan 2024</div><div class="ev-meta">new evidence · six days before separation</div></div>
+                <span class="ev-meter bars-3"><span></span><span></span><span></span></span>
+                <a class="ev-link" href="#ground-4"><svg width="14" height="14"><use href="#chainLink"/></svg></a>
+              </div>
+
+              <div class="ev-card phase-reconnection">
+                <span class="ev-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12a9 9 0 1 0 4-7"/><path d="M3 4v6h6"/></svg></span>
+                <div class="ev-body"><div class="ev-title">Aug–Sep 2023 · Valerie voice-call archive</div><div class="ev-meta">7 calls · 34m 38s · 5 months before separation</div></div>
+                <span class="ev-meter bars-3"><span></span><span></span><span></span></span>
+                <a class="ev-link" href="#ground-5"><svg width="14" height="14"><use href="#chainLink"/></svg></a>
+              </div>
+
+              <div class="ev-card phase-marriage">
+                <span class="ev-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+                <div class="ev-body"><div class="ev-title">Nov 2023 · affectionate spousal-call cluster</div><div class="ev-meta">six calls · 9–12 weeks before separation</div></div>
+                <span class="ev-meter bars-2"><span></span><span></span><span></span></span>
+                <a class="ev-link" href="#ground-4"><svg width="14" height="14"><use href="#chainLink"/></svg></a>
+              </div>
+
+              <div class="ev-card phase-tribunal">
+                <span class="ev-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 1l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/></svg></span>
+                <div class="ev-body"><div class="ev-title">350 KWD monthly post-separation support</div><div class="ev-meta">7 months · per libellus §6</div></div>
+                <span class="ev-meter bars-3"><span></span><span></span><span></span></span>
+              </div>
+
+              <div class="ledger-canon">
+                <span class="label">Canon &amp; sentence references</span>
+                <span class="canon-chip" tabindex="0" data-canon-text="Can. 1095 §3 — The anomaly must have been present at the moment of consent. Plain: post-marital evidence cannot retroactively prove antecedent incapacity (Benedict XVI, Rota 29 Jan 2009).">Can. 1095 §3</span>
+                <span class="canon-chip" tabindex="0" data-canon-text="Can. 1608 §1 — Moral certainty necessary for judgment must exclude well-founded or reasonable doubt (Pius XII, 1 Oct 1942).">Can. 1608 §1</span>
+              </div>
+            </section>
+          </div>
+          <div class="ledger-footer">
+            <span class="page-marker">09 / 10</span>
+            <div>
+              <button class="nav-btn" data-nav="prev">← previous</button>
+              <button class="nav-btn" data-nav="next">next →</button>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="filigree" style="margin: 80px auto;">
+        <span class="filigree-line"></span>
+        <svg width="20" height="20" class="filigree-glyph"><use href="#filigreeGlyph"/></svg>
+        <span class="filigree-line"></span>
+      </div>
+    </section>
+
+    <!-- ─────── APPEAL ─────── -->
+    <section id="appeal">
+      <div class="appeal-header">
+        <span class="scripture">— Hope.</span>
+        <h2 class="section-title">Appellate Observations</h2>
+        <p class="section-script">a respectful response</p>
+        <p class="section-note" style="margin: 12px auto 0;">Ten grounds advanced before the Second Instance Patriarchal Tribunal of Goa and Daman. Each ground is a card with two faces — click <em>verso</em> on any card to see its supporting evidence.</p>
+      </div>
+
+      <div class="appeal-layout">
+        <nav class="appeal-nav" aria-label="Appeal grounds">
+          <p class="appeal-nav-eyebrow">Grounds</p>
+          <ul class="appeal-nav-list" id="appealNav">
+            <li><a href="#ground-1" data-ground="ground-1">Ground I · Engagement-officiant–judge</a></li>
+            <li><a href="#ground-4" data-ground="ground-4">Ground IV · Post-factum reasoning</a></li>
+            <li><a href="#ground-5" data-ground="ground-5">Ground V · Witness coordination</a></li>
+            <li><a href="#ground-9" data-ground="ground-9">Ground IX · Defender capitulation</a></li>
+          </ul>
+        </nav>
+
+        <div class="verso-stack">
+
+          <!-- GROUND I -->
+          <article class="verso-card" id="ground-1" tabindex="0">
+            <div class="verso-inner">
+              <section class="verso-face verso-front">
+                <svg class="corner-floral tl"><use href="#floralCorner"/></svg>
+                <svg class="corner-floral br"><use href="#floralCorner"/></svg>
+
+                <div class="verso-ground">Ground I · Can. 1448 §1</div>
+                <h3 class="verso-heading">The cleric who blessed the engagement<br>sat as the sole First Instance Judge.</h3>
+                <div class="verso-body">
+                  <p>According to the Petitioner's own libellus, the church engagement ceremony of March 2021 was officiated by "Rev. Fr. Anthony." <span class="tag tag-fact">FACT</span> This is the same Rev. Dr. Antony Lopez OFM Cap JCD who later sat as sole First Instance Judge and authored the impugned Sentence. <span class="tag tag-fact">FACT</span></p>
+                  <p><span class="canon-chip" tabindex="0" data-canon-text="Can. 1448 §1 — A judge is not to take part in a case in which he is involved by reason of consanguinity, affinity, guardianship, close acquaintance, great enmity, or financial benefit.">Can. 1448 §1</span> disqualifies a judge involved in a cause by reason of, <em>inter alia</em>, "close acquaintance" with the parties. <span class="tag tag-arg">ARGUMENT</span></p>
+                  <p>A cleric who himself solemnly blessed the engagement of the parties — and later, by the Petitioner's own §7 disclosure, held a private meeting with the Petitioner before the petition was filed — is involved with both parties in a manner Can. 1448 §1 was designed to reach. <span class="tag tag-arg">ARGUMENT</span></p>
+                  <p>The personal integrity of the cleric is not impeached; the structural conflict goes to the appearance and reality of impartiality. <span class="tag tag-infer">INFERENCE</span></p>
+                </div>
+                <button class="verso-tab" data-flip="back">verso →</button>
+              </section>
+
+              <section class="verso-face verso-back">
+                <svg class="corner-floral tl"><use href="#floralCorner"/></svg>
+                <svg class="corner-floral br"><use href="#floralCorner"/></svg>
+
+                <div class="verso-ground">Verso · Supporting Evidence</div>
+                <h3 class="verso-heading">The record on this ground</h3>
+                <div class="verso-evidence">
+                  <div class="ev-card phase-engagement">
+                    <span class="ev-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 3h9l5 5v13H6z"/><path d="M15 3v5h5"/></svg></span>
+                    <div class="ev-body"><div class="ev-title">Petitioner's libellus · page 2</div><div class="ev-meta">"officiated by Rev. Fr. Anthony"</div></div>
+                    <span class="ev-meter bars-3"><span></span><span></span><span></span></span>
+                  </div>
+                  <div class="ev-card phase-engagement">
+                    <span class="ev-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="1"/><circle cx="12" cy="12" r="3"/></svg></span>
+                    <div class="ev-body"><div class="ev-title">25 engagement photographs · cleric visible</div><div class="ev-meta">filed 3 March 2026</div></div>
+                    <span class="ev-meter bars-3"><span></span><span></span><span></span></span>
+                  </div>
+                  <div class="ev-card phase-tribunal">
+                    <span class="ev-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 1l11 11-11 11L1 12z"/></svg></span>
+                    <div class="ev-body"><div class="ev-title">Sentence · sole Judge signature</div><div class="ev-meta">Rev. Dr. Antony Lopez OFM Cap JCD · 23/24 Dec 2025</div></div>
+                    <span class="ev-meter bars-3"><span></span><span></span><span></span></span>
+                  </div>
+                  <div class="ev-card phase-tribunal">
+                    <span class="ev-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 1v6m0 10v6m11-11h-6m-10 0H1"/></svg></span>
+                    <div class="ev-body"><div class="ev-title">Libellus §7 · 9 Nov 2024 meeting</div><div class="ev-meta">private meeting before petition filed</div></div>
+                    <span class="ev-meter bars-2"><span></span><span></span><span></span></span>
+                  </div>
+                </div>
+                <button class="verso-tab left" data-flip="front">← argument</button>
+              </section>
+            </div>
+          </article>
+
+          <!-- GROUND IV -->
+          <article class="verso-card" id="ground-4" tabindex="0">
+            <div class="verso-inner">
+              <section class="verso-face verso-front">
+                <svg class="corner-floral tl"><use href="#floralCorner"/></svg>
+                <svg class="corner-floral br"><use href="#floralCorner"/></svg>
+
+                <div class="verso-ground">Ground IV · Post-Factum Reasoning</div>
+                <h3 class="verso-heading">The Sentence reasons backward<br>from post-marital fracture.</h3>
+                <div class="verso-body">
+                  <p>The finding under <span class="canon-chip" tabindex="0" data-canon-text="Can. 1095 §3 — Incapable of contracting marriage who because of causes of a psychological nature are unable to assume the essential obligations of marriage.">Can. 1095 §3</span> requires antecedent grave incapacity <em>at the moment of consent</em>. <span class="tag tag-fact">FACT</span></p>
+                  <p>The Sentence itself admits the wedding "went off well" (§1) and that "after the marriage they appeared to be happy" (§2). <span class="tag tag-admission">JUDICIAL ADMISSION</span> These admissions cannot coexist with a finding of radical antecedent incapacity. <span class="tag tag-arg">ARGUMENT</span></p>
+                  <p>Pope Benedict XVI taught that the validity of the bond <em>"does not depend on the subsequent conduct of the couple during their married life"</em> (Rota, 29 January 2009). <span class="tag tag-arg">ARGUMENT</span></p>
+                  <p>Six days before the 13 January 2024 separation, the parties spent the day together. <span class="tag tag-new">NEW EVIDENCE</span> Nine to twelve weeks before, recorded affectionate spousal calls. <span class="tag tag-new">NEW EVIDENCE</span> Five months before, the Petitioner's sister addressed the Respondent twice as "my brother in law." <span class="tag tag-new">NEW EVIDENCE</span></p>
+                  <p>None of this is compatible with permanent antecedent incapacity at consent on 28 August 2021. <span class="tag tag-infer">INFERENCE</span></p>
+                </div>
+                <button class="verso-tab" data-flip="back">verso →</button>
+              </section>
+
+              <section class="verso-face verso-back">
+                <svg class="corner-floral tl"><use href="#floralCorner"/></svg>
+                <svg class="corner-floral br"><use href="#floralCorner"/></svg>
+
+                <div class="verso-ground">Verso · Supporting Evidence</div>
+                <h3 class="verso-heading">What the record actually shows</h3>
+                <div class="verso-evidence">
+                  <div class="ev-card phase-marriage">
+                    <span class="ev-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 3h9l5 5v13H6z"/><path d="M15 3v5h5"/></svg></span>
+                    <div class="ev-body"><div class="ev-title">Sentence §1 · "went off well"</div><div class="ev-meta">judicial admission · verified</div></div>
+                    <span class="ev-meter bars-3"><span></span><span></span><span></span></span>
+                  </div>
+                  <div class="ev-card phase-marriage">
+                    <span class="ev-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 3h9l5 5v13H6z"/><path d="M15 3v5h5"/></svg></span>
+                    <div class="ev-body"><div class="ev-title">Sentence §2 · "appeared to be happy"</div><div class="ev-meta">judicial admission · verified</div></div>
+                    <span class="ev-meter bars-3"><span></span><span></span><span></span></span>
+                  </div>
+                  <div class="ev-card phase-tribunal">
+                    <span class="ev-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+                    <div class="ev-body"><div class="ev-title">6 January 2024 · last day together</div><div class="ev-meta">six days before separation · new evidence</div></div>
+                    <span class="ev-meter bars-3"><span></span><span></span><span></span></span>
+                  </div>
+                  <div class="ev-card phase-reconnection">
+                    <span class="ev-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12a9 9 0 1 0 4-7"/><path d="M3 4v6h6"/></svg></span>
+                    <div class="ev-body"><div class="ev-title">Aug–Sep 2023 · Valerie voice-call archive</div><div class="ev-meta">7 calls · 34m 38s · "my brother in law" ×2</div></div>
+                    <span class="ev-meter bars-3"><span></span><span></span><span></span></span>
+                  </div>
+                  <div class="ev-card phase-marriage">
+                    <span class="ev-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+                    <div class="ev-body"><div class="ev-title">Nov 2023 · affectionate call cluster</div><div class="ev-meta">six calls · "Babu" / "I love you" · car-repair logistics</div></div>
+                    <span class="ev-meter bars-2"><span></span><span></span><span></span></span>
+                  </div>
+                  <div class="ev-card phase-tribunal">
+                    <span class="ev-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 1l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/></svg></span>
+                    <div class="ev-body"><div class="ev-title">350 KWD monthly · 7 months post-separation</div><div class="ev-meta">Petitioner's libellus §6 · conduct of moral agency</div></div>
+                    <span class="ev-meter bars-3"><span></span><span></span><span></span></span>
+                  </div>
+                </div>
+                <button class="verso-tab left" data-flip="front">← argument</button>
+              </section>
+            </div>
+          </article>
+
+          <!-- GROUND V -->
+          <article class="verso-card" id="ground-5" tabindex="0">
+            <div class="verso-inner">
+              <section class="verso-face verso-front">
+                <svg class="corner-floral tl"><use href="#floralCorner"/></svg>
+                <svg class="corner-floral br"><use href="#floralCorner"/></svg>
+
+                <div class="verso-ground">Ground V · Witness Coordination</div>
+                <h3 class="verso-heading">The Sentence's witness-inconsistency logic<br>is canonically inverted.</h3>
+                <div class="verso-body">
+                  <p>The Sentence reasons that occasional inconsistencies among the Petitioner's witnesses <em>"prove"</em> the absence of coaching. <span class="tag tag-fact">FACT</span> This is the inverse of <span class="canon-chip" tabindex="0" data-canon-text="Can. 1572 — In evaluating testimony, the judge is to take into account: condition and integrity of the witness; whether they testify from personal knowledge; consistency with self and with other proofs; corroboration or contradiction.">Can. 1572</span>'s framework. <span class="tag tag-arg">ARGUMENT</span></p>
+                  <p>Variations in peripheral detail do not negate coordinated framing. The substantive convergence among witnesses on stock terms — "substance abuse," "anger," "impulsive," "unstable" — together with the chronological proximity of their depositions, reads as a coordinated narrative deployed against a single backdrop. <span class="tag tag-arg">ARGUMENT</span></p>
+                  <p>Valerie's depiction of the Respondent at deposition is impossible to reconcile with her own contemporaneous voice-call conduct five months before separation, in which she addressed him twice as "my brother in law" and declined commission on a freelance referral. <span class="tag tag-new">NEW EVIDENCE</span></p>
+                  <p>Under Can. 1572, contemporaneous documentary conduct is the controlling check on litigation testimony. <span class="tag tag-infer">INFERENCE</span></p>
+                </div>
+                <button class="verso-tab" data-flip="back">verso →</button>
+              </section>
+
+              <section class="verso-face verso-back">
+                <svg class="corner-floral tl"><use href="#floralCorner"/></svg>
+                <svg class="corner-floral br"><use href="#floralCorner"/></svg>
+
+                <div class="verso-ground">Verso · Supporting Evidence</div>
+                <h3 class="verso-heading">The voice-call archive</h3>
+                <div class="verso-evidence">
+                  <div class="ev-card phase-reconnection">
+                    <span class="ev-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12a9 9 0 1 0 4-7"/><path d="M3 4v6h6"/></svg></span>
+                    <div class="ev-body"><div class="ev-title">23 Aug 2023 · 6m 16s · "my brother in law" ×2</div><div class="ev-meta">whatsapp_20230823-210609_Val.mp3</div></div>
+                    <span class="ev-meter bars-3"><span></span><span></span><span></span></span>
+                  </div>
+                  <div class="ev-card phase-reconnection">
+                    <span class="ev-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12a9 9 0 1 0 4-7"/><path d="M3 4v6h6"/></svg></span>
+                    <div class="ev-body"><div class="ev-title">Full archive · 7 calls · 34m 38s total</div><div class="ev-meta">16 Aug → 20 Sep 2023</div></div>
+                    <span class="ev-meter bars-3"><span></span><span></span><span></span></span>
+                  </div>
+                  <div class="ev-card phase-tribunal">
+                    <span class="ev-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg></span>
+                    <div class="ev-body"><div class="ev-title">Leon · 29 Aug 2025 audio</div><div class="ev-meta">"that was not with her" · firsthand correction</div></div>
+                    <span class="ev-meter bars-2"><span></span><span></span><span></span></span>
+                  </div>
+                  <div class="ev-card phase-marriage">
+                    <span class="ev-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="1"/><circle cx="12" cy="12" r="3"/></svg></span>
+                    <div class="ev-body"><div class="ev-title">28 Jan 2022 · family-integration photos</div><div class="ev-meta">26 images · IMG-20220128-WA0014→WA0039</div></div>
+                    <span class="ev-meter bars-3"><span></span><span></span><span></span></span>
+                  </div>
+                </div>
+                <button class="verso-tab left" data-flip="front">← argument</button>
+              </section>
+            </div>
+          </article>
+
+          <!-- GROUND IX -->
+          <article class="verso-card" id="ground-9" tabindex="0">
+            <div class="verso-inner">
+              <section class="verso-face verso-front">
+                <svg class="corner-floral tl"><use href="#floralCorner"/></svg>
+                <svg class="corner-floral br"><use href="#floralCorner"/></svg>
+
+                <div class="verso-ground">Ground IX · Defender of the Bond Capitulation</div>
+                <h3 class="verso-heading">The Defender did not perform the office<br>that Canon 1432 constitutes.</h3>
+                <div class="verso-body">
+                  <p>The Sentence at §31 records that the Defender of the Bond <em>"cannot raise any arguments against the nullity of this marriage."</em> <span class="tag tag-fact">FACT</span></p>
+                  <p><span class="canon-chip" tabindex="0" data-canon-text="Can. 1432 — The Defender of the Bond is bound by office to propose and expound all that can reasonably be argued against nullity. Plain: the office exists to ensure that the favour matrimonii of Can. 1060 is actively defended.">Can. 1432</span> binds the Defender <em>"by office to present and expound all that can reasonably be argued against the nullity."</em> Dignitas Connubii Art. 56 §5 permits remittal to the justice of the court only when nothing can <em>"reasonably be proposed or argued."</em> <span class="tag tag-arg">ARGUMENT</span></p>
+                  <p>A capitulation in a case where the record yielded the §1 and §2 admissions, the engagement photographs, the family-integration photographs, the Valerie voice-call archive, the November 2023 affectionate-call cluster, the 6/7 January 2024 outing six days before separation, and the 350 KWD post-separation support — is not a tenable judgement that "nothing reasonable" could be advanced for the bond. <span class="tag tag-arg">ARGUMENT</span></p>
+                </div>
+                <button class="verso-tab" data-flip="back">verso →</button>
+              </section>
+
+              <section class="verso-face verso-back">
+                <svg class="corner-floral tl"><use href="#floralCorner"/></svg>
+                <svg class="corner-floral br"><use href="#floralCorner"/></svg>
+
+                <div class="verso-ground">Verso · The record the Defender did not raise</div>
+                <h3 class="verso-heading">A non-exhaustive list</h3>
+                <div class="verso-evidence">
+                  <div class="ev-card phase-marriage"><span class="ev-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 3h9l5 5v13H6z"/><path d="M15 3v5h5"/></svg></span><div class="ev-body"><div class="ev-title">Sentence §§1, 2 — judicial admissions</div><div class="ev-meta">"went off well" / "appeared happy"</div></div><span class="ev-meter bars-3"><span></span><span></span><span></span></span></div>
+                  <div class="ev-card phase-engagement"><span class="ev-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="1"/><circle cx="12" cy="12" r="3"/></svg></span><div class="ev-body"><div class="ev-title">25 engagement photographs</div><div class="ev-meta">filed 3 March 2026</div></div><span class="ev-meter bars-3"><span></span><span></span><span></span></span></div>
+                  <div class="ev-card phase-marriage"><span class="ev-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="1"/><circle cx="12" cy="12" r="3"/></svg></span><div class="ev-body"><div class="ev-title">28 Jan 2022 family-integration · 26 images</div><div class="ev-meta">5 months post-wedding · both families</div></div><span class="ev-meter bars-3"><span></span><span></span><span></span></span></div>
+                  <div class="ev-card phase-reconnection"><span class="ev-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12a9 9 0 1 0 4-7"/><path d="M3 4v6h6"/></svg></span><div class="ev-body"><div class="ev-title">Aug–Sep 2023 Valerie voice-call archive</div><div class="ev-meta">"my brother in law" ×2</div></div><span class="ev-meter bars-3"><span></span><span></span><span></span></span></div>
+                  <div class="ev-card phase-marriage"><span class="ev-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><div class="ev-body"><div class="ev-title">Nov 2023 affectionate call cluster</div><div class="ev-meta">6 calls · 9-12 wks pre-separation</div></div><span class="ev-meter bars-2"><span></span><span></span><span></span></span></div>
+                  <div class="ev-card phase-tribunal"><span class="ev-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><div class="ev-body"><div class="ev-title">6 January 2024 · day together</div><div class="ev-meta">six days before separation</div></div><span class="ev-meter bars-3"><span></span><span></span><span></span></span></div>
+                </div>
+                <button class="verso-tab left" data-flip="front">← argument</button>
+              </section>
+            </div>
+          </article>
+
+        </div>
+      </div>
+
+      <!-- ─────── FOLDED-LETTER DIPTYCH (with inline analysis · no alert) ─────── -->
+      <div class="diptych-wrap" id="diptych-section">
+        <div style="text-align: center; max-width: 760px; margin: 0 auto 24px;">
+          <span class="scripture">— Contradiction.</span>
+          <h2 class="section-title">The folded letter</h2>
+          <p class="section-note" style="margin: 16px auto 0;">Two passages from the same Sentence. Hover to lift the pages. Click the gold G&amp;N seal to break it open — the analysis unfolds below.</p>
+        </div>
+
+        <div class="diptych" id="diptych" role="figure" aria-label="Sentence §1 versus Sentence §30 — internal contradiction">
+          <div class="diptych-page left">
+            <div class="diptych-label">
+              <span class="eyebrow">Sentence §1</span>
+              <p class="quote">"The nuptials and the wedding celebrations went off well."</p>
+            </div>
+          </div>
+          <div class="diptych-page right">
+            <div class="diptych-label">
+              <span class="eyebrow">Sentence §30</span>
+              <p class="quote">"Both parties lacked the capacity to assume the essential obligations of marriage."</p>
+            </div>
+          </div>
+
+          <svg class="diptych-ribbon" viewBox="0 0 56 600" preserveAspectRatio="none" aria-hidden="true">
+            <defs>
+              <linearGradient id="ribbonShade" x1="0%" x2="100%">
+                <stop offset="0%"   stop-color="#0E2A1F" />
+                <stop offset="35%"  stop-color="#2D553F" />
+                <stop offset="65%"  stop-color="#2D553F" />
+                <stop offset="100%" stop-color="#0E2A1F" />
+              </linearGradient>
+            </defs>
+            <rect x="0" y="0" width="56" height="600" fill="url(#ribbonShade)" />
+            <rect x="10" y="0" width="1" height="600" fill="#0E2A1F" opacity="0.5" />
+            <rect x="45" y="0" width="1" height="600" fill="#0E2A1F" opacity="0.5" />
+          </svg>
+
+          <!-- the diptych seal · same crack-and-split language as the main wax seal -->
+          <svg class="diptych-seal" viewBox="0 0 100 100" aria-label="Break the seal · reveal the canonical analysis">
+            <defs>
+              <radialGradient id="diptychSealG" cx="38%" cy="32%" r="78%">
+                <stop offset="0%"   stop-color="#3F6B52" />
+                <stop offset="60%"  stop-color="#1F3D2E" />
+                <stop offset="100%" stop-color="#0E2A1F" />
+              </radialGradient>
+            </defs>
+            <g class="ds-half-left">
+              <path d="M 50 6 C 28 8, 10 24, 8 50 C 6 70, 18 86, 38 96 C 44 98, 49 98, 50 97 L 50 6 Z" fill="url(#diptychSealG)" />
+            </g>
+            <g class="ds-half-right">
+              <path d="M 50 6 C 72 8, 90 24, 92 50 C 94 70, 82 86, 62 96 C 56 98, 51 98, 50 97 L 50 6 Z" fill="url(#diptychSealG)" />
+            </g>
+            <text class="ds-G"   x="32" y="62" text-anchor="middle" font-family="Cormorant Garamond, serif" font-style="italic" font-weight="600" font-size="40" fill="url(#globalMonoGold)">G</text>
+            <text class="ds-amp" x="50" y="60" text-anchor="middle" font-family="Cormorant Garamond, serif" font-style="italic" font-weight="500" font-size="24" fill="url(#globalMonoGold)">&amp;</text>
+            <text class="ds-N"   x="68" y="62" text-anchor="middle" font-family="Cormorant Garamond, serif" font-style="italic" font-weight="600" font-size="40" fill="url(#globalMonoGold)">N</text>
+            <path class="crack" d="M 50 6 L 47 24 L 53 42 L 47 60 L 53 78 L 50 96" />
+          </svg>
+        </div>
+
+        <!-- inline analysis · replaces the alert -->
+        <aside class="diptych-analysis" aria-live="polite">
+          <span class="scripture">Moral certainty · Can. 1608 §1</span>
+          <h4>An admission and a conclusion cannot stand together without a bridge.</h4>
+          <p>The First Instance Sentence opens with two judicial admissions — that the nuptials <em>"went off well"</em> (§1) and that <em>"after the marriage they appeared to be happy"</em> (§2) — and closes (§30) with a finding that, at the moment described, both parties lacked the canonical capacity to assume the essential obligations of marriage.</p>
+          <p>Pius XII's allocution of 1 October 1942, ratified by Pope St John Paul II at the Rota in 1980, requires moral certainty that, <em>"on the positive side, excludes well-founded or reasonable doubt."</em> The Sentence does not bridge §1 and §2 to §30 by argument or expert testimony; it does not even acknowledge them in the §30 conclusion.</p>
+          <p>An internal contradiction of this gravity, unaddressed, falls short of the Can. 1608 §1 bar. The favour of the law (Can. 1060) requires that, in this doubt, the validity of the marriage of 28 August 2021 be upheld.</p>
+          <div class="canon-line">— Can. 1608 §1 · Can. 1060 · Pius XII 1942 · JP II Rota 1980</div>
+        </aside>
+      </div>
+
+      <!-- ─────── PRAYER FOR RELIEF ─────── -->
+      <section class="prayer" id="prayer">
+        <svg class="corner-floral tl"><use href="#floralCorner"/></svg>
+        <svg class="corner-floral br"><use href="#floralCorner"/></svg>
+
+        <span class="scripture">— and the greatest of these is love.</span>
+        <h3>Prayer for Relief</h3>
+        <p>The Respondent respectfully prays that this Honourable Patriarchal Tribunal issue a Negative Definitive Sentence under Can. 1095 §3, upholding the validity of the marriage of 28 August 2021, and that the First Instance Sentence of 23/24 December 2025 be set aside.</p>
+      </section>
+    </section>
+
+  </main>
+
+  <!-- ═════════════════════════ FOOTER ═════════════════════════ -->
+  <footer class="site-footer">
+    <svg class="corner-floral bl"><use href="#floralCorner"/></svg>
+    <svg class="corner-floral br"><use href="#floralCorner"/></svg>
+    <span class="scripture">— and the greatest of these is love. (1 Corinthians 13:13)</span>
+    <p>greywedsnicole.com · <strong>v2 — interactive build</strong></p>
+    <p style="margin-top: 8px; opacity: 0.6;">All photographs are placeholders. Static export target: Namecheap shared hosting.</p>
+  </footer>
+
+  <script>
+    // ════════════════ GOLD RIBBON NAV ════════════════
+    const ribbonAnchors = [
+      { id: 'hero',         label: 'Hero' },
+      { id: 'narrative',    label: 'Our Story' },
+      { id: 'entries',      label: 'Three paths' },
+      { id: 'seal',         label: 'The Seal' },
+      { id: 'timeline',     label: 'Memory Ledger' },
+      { id: 'appeal',       label: 'Appeal' },
+      { id: 'diptych-section', label: 'Contradiction' },
+      { id: 'prayer',       label: 'Prayer' },
+    ];
+    const ribbon = document.getElementById('ribbon');
+    ribbonAnchors.forEach(({ id, label }) => {
+      const dot = document.createElement('div');
+      dot.className = 'ribbon-dot';
+      dot.dataset.target = id;
+      dot.innerHTML = `<span class="ribbon-tip">${label}</span>`;
+      dot.addEventListener('click', () => {
+        document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+      ribbon.appendChild(dot);
+    });
+    const ribbonDots = [...document.querySelectorAll('.ribbon-dot')];
+    const sectionObs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          ribbonDots.forEach(d => d.classList.toggle('active', d.dataset.target === entry.target.id));
+        }
+      });
+    }, { rootMargin: '-40% 0px -55% 0px' });
+    ribbonAnchors.forEach(({ id }) => {
+      const el = document.getElementById(id);
+      if (el) sectionObs.observe(el);
+    });
+
+    // ════════════════ SCROLL NARRATIVE — fragment reveal ════════════════
+    const fragments = document.querySelectorAll('.fragment');
+    const fragObs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('in-view');
+      });
+    }, { threshold: 0.3 });
+    fragments.forEach(f => fragObs.observe(f));
+
+    // ════════════════ ENTRY CARDS — click targets ════════════════
+    document.querySelectorAll('.entry-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const target = card.dataset.target;
+        if (target) document.getElementById(target)?.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+
+    // ════════════════ WAX SEAL UNLOCK ════════════════
+    const stage   = document.getElementById('seal');
+    const seal    = document.getElementById('waxSeal');
+    const input   = document.getElementById('sealInput');
+    const hint    = document.getElementById('sealHint');
+    const reset   = document.getElementById('sealReset');
+    const PASSWORD = 'GreyGotNicked';
+
+    const crackSeal = () => {
+      if (stage.classList.contains('cracking') || stage.classList.contains('unlocked')) return;
+      stage.classList.add('cracking');
+      setTimeout(() => input?.focus(), 700);
+    };
+    seal.addEventListener('click', crackSeal);
+    stage.addEventListener('keydown', (e) => {
+      if ((e.key === 'Enter' || e.key === ' ') && !stage.classList.contains('cracking') && e.target === stage) {
+        e.preventDefault(); crackSeal();
+      }
+    });
+
+    input?.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        if (input.value === PASSWORD) {
+          // G&N magnetic snap back together briefly, then dissolve
+          stage.classList.remove('cracking');
+          stage.classList.add('snap');
+          setTimeout(() => {
+            stage.classList.add('unlocking');
+            setTimeout(() => {
+              document.body.classList.add('unlocked');
+              document.getElementById('timeline')?.scrollIntoView({ behavior: 'smooth' });
+            }, 1100);
+          }, 700);
+        } else {
+          input.classList.remove('shake'); void input.offsetWidth; input.classList.add('shake');
+          hint.textContent = '— try again —';
+          setTimeout(() => { hint.textContent = 'Type · then press Enter'; input.classList.remove('shake'); input.value = ''; input.focus(); }, 1200);
+        }
+      }
+    });
+    reset.addEventListener('click', () => {
+      stage.classList.remove('cracking', 'snap', 'unlocking');
+      input.value = ''; hint.textContent = 'Type · then press Enter';
+      document.body.classList.remove('unlocked');
+    });
+
+    // ════════════════ TIMELINE — phase filter ════════════════
+    const phaseButtons = document.querySelectorAll('.phase-pill[data-phase]');
+    const ledgers = document.querySelectorAll('.ledger[data-phase]');
+    phaseButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        phaseButtons.forEach(b => b.classList.toggle('active', b === btn));
+        const phase = btn.dataset.phase;
+        ledgers.forEach(l => {
+          l.style.display = (phase === 'all' || l.dataset.phase === phase) ? '' : 'none';
+        });
+      });
+    });
+
+    // ════════════════ LEDGER NAV (prev / next) ════════════════
+    document.querySelectorAll('.ledger .nav-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const visible = [...document.querySelectorAll('.ledger')].filter(l => l.style.display !== 'none');
+        const current = btn.closest('.ledger');
+        const idx = visible.indexOf(current);
+        const dir = btn.dataset.nav === 'next' ? 1 : -1;
+        const target = visible[idx + dir];
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+
+    // ════════════════ APPEAL NAV — active highlight + scroll ════════════════
+    const appealNavLinks = document.querySelectorAll('#appealNav a');
+    const groundCards = document.querySelectorAll('.verso-card[id^="ground-"]');
+    const appealObs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          appealNavLinks.forEach(a => a.classList.toggle('active', a.dataset.ground === entry.target.id));
+        }
+      });
+    }, { rootMargin: '-30% 0px -55% 0px' });
+    groundCards.forEach(c => appealObs.observe(c));
+
+    // ════════════════ VERSO CARD FLIP ════════════════
+    document.querySelectorAll('.verso-card').forEach(card => {
+      card.querySelectorAll('[data-flip]').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          card.classList.toggle('flipped');
+        });
+      });
+      card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          if (e.target === card) {
+            e.preventDefault();
+            card.classList.toggle('flipped');
+          }
+        }
+      });
+    });
+
+    // ════════════════ DIPTYCH SEAL · inline analysis (no alert) ════════════════
+    const diptych = document.getElementById('diptych');
+    const diptychSeal = document.querySelector('.diptych-seal');
+    diptychSeal?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      diptych.classList.toggle('opened');
+    });
+
+    // ════════════════ TRIBUNAL KEYSTROKES ════════════════
+    document.addEventListener('keydown', (e) => {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+      if (e.key === 'h') document.getElementById('hero')?.scrollIntoView({behavior:'smooth'});
+      if (e.key === 't') document.getElementById('timeline')?.scrollIntoView({behavior:'smooth'});
+      if (e.key === 'a') document.getElementById('appeal')?.scrollIntoView({behavior:'smooth'});
+      if (e.key === 's') document.getElementById('seal')?.scrollIntoView({behavior:'smooth'});
+    });
+  </script>
+</body>
+</html>
